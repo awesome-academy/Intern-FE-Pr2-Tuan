@@ -1,0 +1,31 @@
+.btn-add {
+    .btn {
+        background-color: $green-color;
+        border-radius: 40px;
+        border: none;
+        outline: none;
+        padding: 10px 20px;
+        @include cl-fs-fw($white-color,14px,600);
+
+        &:hover {
+            background-color: $green-color;
+            color: $white-color;
+        }
+
+        svg {
+            margin-right: 10px;
+        }
+    }
+
+    .related {
+        background-color: $white-color;
+        outline: none;
+        transition: all 0.3s ease;
+        @include cl-fs-fw($green-color,14px,600);
+
+        &:hover {
+            background-color: $green-color;
+            color: $white-color;
+        }
+    }
+}

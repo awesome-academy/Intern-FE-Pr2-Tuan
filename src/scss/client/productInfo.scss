@@ -1,0 +1,70 @@
+@import '../utils/variables';
+
+.product-info {
+    background-color: $white-color;
+    margin-top: 100px;
+
+    &__left {
+        .img-wrapper {
+            max-width: 450px;
+            max-height: 450px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            background-color: $white-color;
+            border: 1px solid $green-color;
+            border-radius: 5px;
+            width: 100px;
+            height: 40px;
+            padding: 5px 20px;
+            margin-bottom: 5px;
+            @include cl-fs-fw($green-color,14px,400);
+
+            &:hover {
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+                color: $green-color;
+            }
+        }
+    }
+
+    &__right {
+        &__title {
+            h1 {
+                @include cl-fs-fw($color-head-title,21px,700);
+            }
+            
+            p {
+                color: $color-sub-title;
+                font-size: 14px;
+            }
+        }
+
+        &__des {
+            p {
+                line-height: 1.8;
+                height: 115px;
+                overflow: hidden;
+                margin: 0;
+                @include cl-fs-fw($color-des,15px,400px);
+            }
+            
+
+            .read-more {
+                cursor: pointer;
+                margin-bottom: 50px;
+                @include cl-fs-fw($green-color,14px,600);
+            }
+
+            .des-show {
+                height: 100%;
+                overflow: unset !important;
+            }
+        }
+
+        &__price {
+            margin-bottom: 20px;
+            @include cl-fs-fw($green-color,22px,600);
+        }
+    }
+}

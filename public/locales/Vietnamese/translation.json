@@ -1,0 +1,31 @@
+{
+    "home": {
+        "signin": "Đăng nhập",
+        "headtitle": "Cửa hàng sách của riêng bạn",
+        "subtitle": "Mua nhưng cuốn sách yêu thích của bạn từ cửa hàng chúng tôi.",
+        "lable": "Sách",
+        "placeholder": "Tìm kiếm sách bạn cần tại đây",
+        "search": "Tìm kiếm",
+        "category": "Chọn loại sách"
+    },
+    "detail": {
+        "back": "Quay lại",
+        "readmore": "Đọc thêm",
+        "less": "Ẩn"
+    },
+    "btn" : {
+        "add": "thêm",
+        "addtocart": "thêm vào giỏ"
+    },
+    "modal": {
+        "login": {
+            "email": "Email",
+            "password": "Password",
+            "headtitle": "Chào mừng bạn",
+            "subtitle": "Đăng nhập với email và password",
+            "dontaccount": "Bạn không có tài khoản?",
+            "signup": "Đăng ký",
+            "continue": "Đăng nhập"
+        }
+    }
+}

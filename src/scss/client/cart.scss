@@ -1,0 +1,35 @@
+.cart {
+    background-color: $green-color;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 0 14px 14px 14px;
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
+    &__item-amount {
+        padding: 10px 0;
+        user-select: none;
+        @include cl-fs-fw($white-color,14px,600);
+
+        .fa-shopping-bag {
+            margin-right: 5px;
+        }
+    }
+
+    &__total-price {
+        background-color: $white-color;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        text-align: center;
+
+        p {
+            padding: 5px 0;
+            margin: 0px;
+            @include cl-fs-fw($green-color,14px,600);
+        }
+    }
+}
