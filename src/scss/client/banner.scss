@@ -1,0 +1,82 @@
+// @import '../utils/variables';
+
+.banner {
+    background-image: url(https://res.cloudinary.com/dofqucuyy/image/upload/v1585755127/Books/background_etmzc6.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $grey-color1;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    @include flexCenter;
+
+    &__title {
+        .banner__head__title {
+            user-select: none;
+            text-align: center;
+            @include cl-fs-fw($color-head-title,55px,700);
+        }
+
+        .banner__sub__title {
+            margin-top: 20px;
+            margin-bottom: 50px;
+            user-select: none;
+            text-align: center;
+            @include cl-fs-fw($color-sub-title,19px,400)
+        }
+    } 
+
+    &__search {
+        border-radius: 3px;
+        background-color: $background-color-search;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 21px 36px;
+        width: 700px;
+        margin: 0 auto;
+        padding-left: 5px;
+        @include flexCustom(row,space-between,center);
+
+        &__lable {
+            background-color: $background-color;
+            border-radius: 6px;
+            line-height: 38px;
+            margin: 0 5px;
+            padding: 0 15px;
+            @include cl-fs-fw($green-color,13px,700);
+            @include flexCustom(row,flex-start,center);
+        }
+
+        form  {
+            flex-grow: 1;
+
+            input {
+                border: none;
+                outline: none;
+                width: 100%;
+            }
+        }
+
+        .btn-search {
+            border: none;
+            background-color: $green-color;
+            padding: 0 25px;
+            height: 55px;
+            @include cl-fs-fw($white-color,16px,600);
+
+            &:hover {
+                background-color: $green-color;
+            }
+
+            &:focus {
+                box-shadow: none;
+                background-color: $green-color;
+                outline: none;
+            }
+
+            .fa-search {
+                margin-right: 15px;
+            }
+        }
+    }
+}

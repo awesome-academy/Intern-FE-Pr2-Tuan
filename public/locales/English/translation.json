@@ -1,0 +1,31 @@
+{
+    "home": {
+        "signin": "Sign in",
+        "headtitle": "Your own books store",
+        "subtitle": "Get your favorite books from our wide range of books.",
+        "lable": "Book",
+        "placeholder": "Search your books from here",
+        "search": "Search",
+        "category": "Select your category"
+    },
+    "detail": {
+        "back": "back",
+        "readmore": "Read more",
+        "less": "less"
+    },
+    "btn" : {
+        "add": "cart",
+        "addtocart": "Add to cart"
+    },
+    "modal": {
+        "login": {
+            "email": "Email",
+            "password": "Password",
+            "headtitle": "Welcome Back",
+            "subtitle": "Login with your email & password",
+            "dontaccount": "Don't have an account?",
+            "signup": "Sign up",
+            "continue": "Continue"
+        }
+    }
+}
