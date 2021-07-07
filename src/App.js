@@ -1,6 +1,10 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import routes from './routes';
+
+const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);
 
 function App() {
     const showRoutes = (routes) => {
@@ -18,12 +22,13 @@ function App() {
         return <Switch>{result}</Switch>;
     };
     return (
-        <BrowserRouter>
-            <div className="App">
-                {showRoutes(routes)}
-            </div>
-        </BrowserRouter>
-        
+        <Elements stripe={stripePromise}>
+            <BrowserRouter>
+                <div className="App">
+                    {showRoutes(routes)}
+                </div>
+            </BrowserRouter>
+        </Elements>
     );
 }
 
