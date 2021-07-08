@@ -26,6 +26,15 @@
             "dontaccount": "Bạn không có tài khoản?",
             "signup": "Đăng ký",
             "continue": "Đăng nhập"
+        },
+        "signup": {
+            "name": "Tên",
+            "email": "Email",
+            "password": "Mật khẩu",
+            "signup": "Đăng ký tài khoản",
+            "address": "Địa chỉ",
+            "phone": "Số điện thoại",
+            "subtitle": "Nhập đầy đủ các thông tin bên dưới để đăng ký"
         }
     },
     "checkoutpage": {

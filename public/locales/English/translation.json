@@ -26,6 +26,18 @@
             "dontaccount": "Don't have an account?",
             "signup": "Sign up",
             "continue": "Continue"
+        },
+        "signup": {
+            "name": "Name",
+            "email": "Email",
+            "password": "Password",
+            "signup": "Sign up",
+            "address": "Address",
+            "phone": "Phone",
+            "subtitle": "By signing up, you agree to Pickbazar's",
+            "continue": "Continue",
+            "haveaccount": "Already have an account?",
+            "signin": "Sign in"
         }
     },
     "checkoutpage": {

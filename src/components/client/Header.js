@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Modal } from 'reactstrap';
 import FormSignIn from './FormSignIn';
+import FormSignUp from './FormSignUp';
 
 const Header = () => {
+    const openForm = useSelector((state) => state.openForm);
     const [isModal, setIsModal] = useState(false);
     const [isShowLang, setIsShowLang] = useState(false);
     const [language, setLanguage] = useState('English');
@@ -60,7 +63,7 @@ const Header = () => {
                     className="modal-dialog modal-dialog-centered" 
                     external={externalCloseBtn}
                 >
-                    <FormSignIn />
+                    {openForm === 'signin' ? <FormSignIn /> : <FormSignUp />}
                 </Modal>
                 <div className="header__btn__lang">
                     <button className="language-switched h-100" onClick={toggleShowLang}>
