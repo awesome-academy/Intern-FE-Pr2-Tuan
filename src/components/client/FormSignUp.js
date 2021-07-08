@@ -7,13 +7,16 @@ import {
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { OpenFormSignUp } from '../../actions';
+import { OpenFormSignIn } from '../../actions';
 
-const FormSignIn = () => {
+const FormSignUp = () => {
     const dispatch = useDispatch();
     const [inputValue, setInputvalue] = useState({
+        name: '',
         email: '',
         password: '',
+        address: '',
+        phone: '',
     });
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -68,24 +71,44 @@ const FormSignIn = () => {
             </div>
             <Form onSubmit={onSubmit}>
                 <FormGroup className="mb-3">
-                    <Label className="mb-1" for="Email">{t('modal.login.email')}</Label>
-                    <Input type="email" name="email" id="Email" placeholder="EX: doanhtuan@gmail.com" value={inputValue.email} onChange={handleChange} />
+                    <Label className="mb-1" for="Name">{t('modal.signup.name')}</Label>
+                    <Input type="text" name="Name" id="Name" value={inputValue.name} onChange={handleChange} />
                     {emailError && <div className="validation">{emailError}</div>}
                 </FormGroup>
                 <FormGroup className="mb-3">
-                    <Label className="mb-1" for="Password">{t('modal.login.password')}</Label>
-                    <Input type="password" name="password" id="Password" placeholder="EX: tuan123" value={inputValue.password} onChange={handleChange} />
+                    <Label className="mb-1" for="Email">{t('modal.signup.email')}</Label>
+                    <Input type="email" name="email" id="Email" value={inputValue.email} onChange={handleChange} />
+                    {emailError && <div className="validation">{emailError}</div>}
+                </FormGroup>
+                <FormGroup className="mb-3">
+                    <Label className="mb-1" for="Password">{t('modal.signup.password')}</Label>
+                    <Input type="password" name="password" id="Password" value={inputValue.password} onChange={handleChange} />
                     {passwordError && <div className="validation">{passwordError}</div>}
                 </FormGroup>
-                <Button size="lg" block type="submit" className="btn">{t('modal.login.continue')}</Button>
+                <FormGroup className="mb-3">
+                    <Label className="mb-1" for="Address">{t('modal.signup.address')}</Label>
+                    <Input type="text" name="address" id="Address" value={inputValue.address} onChange={handleChange} />
+                    {passwordError && <div className="validation">{passwordError}</div>}
+                </FormGroup>
+                <FormGroup className="mb-3">
+                    <Label className="mb-1" for="Phone">{t('modal.signup.phone')}</Label>
+                    <Input type="text" name="phone" id="Phone" value={inputValue.phone} onChange={handleChange} />
+                    {passwordError && <div className="validation">{passwordError}</div>}
+                </FormGroup>
+                <Button size="lg" block type="submit" className="btn">{t('modal.signup.continue')}</Button>
             </Form>
             <div className="form-signin__footer">
-                {t('modal.login.dontaccount')}
+                {t('modal.signup.haveaccount')}
                 &nbsp;
-                <span className="btn-signup" onClick={() => dispatch(OpenFormSignUp())}>{t('modal.login.signup')}</span>
+                <span 
+                className="btn-signup" 
+                onClick={() => dispatch(OpenFormSignIn())}
+                >
+                    {t('modal.signup.signin')}
+                </span>
             </div>
         </div>
     );
 };
 
-export default FormSignIn;
+export default FormSignUp;
