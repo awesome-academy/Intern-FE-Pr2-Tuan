@@ -27,5 +27,37 @@
             "signup": "Đăng ký",
             "continue": "Đăng nhập"
         }
+    },
+    "checkoutpage": {
+        "yourorder": "Đơn hàng của bạn",
+        "checkout": "Thanh toán",
+        "youraccount": "Thiết lập tài khoản",
+        "logout": "Đăng xuất",
+        "subtotal": "Tổng tiền",
+        "shipping": "Miễn phí giao hàng",
+        "total": "Tổng tiền cần thanh toán",
+        "billaddress": "Địa chỉ giao hàng",
+        "name": "Tên",
+        "address": "Địa chỉ",
+        "phone": "Số điện thoại",
+        "selectoption": "Chọn phương thức thanh toán",
+        "cash": "Tiền mặt",
+        "card": "Thẻ ngân hàng",
+        "proceedcheckout": "Thanh Toán"
+    },
+    "ordersuccess": {
+        "back": "quay lại",
+        "ordersuccess": "Đặt hàng thành công",
+        "thank": "Cảm ơn bạn ! Đơn hàng của bạn đã đc chấp nhận",
+        "orderid": "Mã đơn hàng",
+        "date": "Ngày",
+        "total": "Tổng tiền",
+        "paymentmethod": "Phương thức thanh toán",
+        "orderdetail": "Chi tiết đơn hàng",
+        "totalitem": "Tổng số lượng sản phẩm",
+        "ordertime": "Thời gian",
+        "location": "Địa chỉ giao hàng",
+        "totalamount": "Tổng tiền thanh toán",
+        "subtotal": "Tổng tiền"
     }
 }

@@ -1,0 +1,128 @@
+.checkout-form {
+    background-color: $white-color;
+    box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+    width: 870px;
+    margin: 0 auto;
+    padding: 50px 30px;
+
+    .order-info {
+        background-color: $background-color;
+        box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+        padding: 20px 40px;
+        border-radius: 5px;
+
+        &__headtitle {
+            line-height: 1.2;
+            margin-bottom: 25px;
+            @include cl-fs-fw($color-head-title,20px,700);
+        }
+
+        &__item {
+            border-bottom: 1px solid $border-bottom;
+            padding: 30px 0;
+        }
+    }
+
+    form {
+        margin-top: 50px;
+
+        .billing-address {
+            background-color: $background-color;
+            border-radius: 5px;
+            box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+            padding: 20px 40px;
+
+            &__title {
+                line-height: 1.2;
+                margin-bottom: 25px;
+                @include cl-fs-fw($color-head-title,20px,700);
+            }
+
+            .form-group {
+                align-items: center;
+                border-bottom: 1px solid $border-bottom;
+                display: flex;
+                margin-bottom: 25px;
+
+                label {
+                    color: $label-color;
+                    font-size: 16px;
+                    margin: 0;
+                    min-width: 70px;
+                    width: 15%;
+                    padding: 11px 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                .form-control {
+                    background-color: $background-color;
+                    border: none;
+                    font-size: 16px;
+                    width: 100%;
+                    outline: none;
+                    text-overflow: ellipsis;
+
+                    &:focus {
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .payment {
+        background-color: $background-color;
+        box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+        border-radius: 5px;
+        margin: 60px 0 30px 0;
+        padding: 20px 40px;
+
+        &__title {
+            line-height: 1.2;
+            margin-bottom: 25px;
+            @include cl-fs-fw($color-head-title,25px,700)
+        }
+
+        .form-group {
+            label {
+                border-radius: 5px;
+                border: 2px solid $green-color;
+                color: $green-color;
+                cursor: pointer;
+                padding: 10px 80px;
+                flex-direction: column;
+                transition: background-color 0.4s;
+                @include flexCenter;
+    
+                svg {
+                    font-size: 60px;
+                }
+    
+                span {
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+            }
+
+            input[type="radio"] {
+                display: none;
+            }
+    
+            input[type="radio"]:checked + label {
+                background-color: $green-color;
+                color: $white-color;
+            }
+    
+        }
+    }
+
+    .btn {
+        background-color: $green-color ;
+        border: none;
+        margin-top: 50px;
+        padding: 15px;
+        @include cl-fs-fw($white-color,14px,600);
+    }
+}

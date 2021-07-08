@@ -27,5 +27,37 @@
             "signup": "Sign up",
             "continue": "Continue"
         }
+    },
+    "checkoutpage": {
+        "yourorder": "Your Orders",
+        "checkout": "Checkout",
+        "youraccount": "Your Account Settings",
+        "logout": "Log Out",
+        "subtotal": "Sub Total",
+        "shipping": "Shipping Free",
+        "total": "Total",
+        "billaddress": "Billing Address",
+        "name": "name",
+        "address": "Address",
+        "phone": "Phone",
+        "selectoption": "Select Payment Option",
+        "cash": "Cash",
+        "card": "Card",
+        "proceedcheckout": "Proceed to Checkout"
+    },
+    "ordersuccess": {
+        "back": "back to home",
+        "ordersuccess": "Order Success",
+        "thank": "Thank you. You order has been received",
+        "orderid": "Order Id",
+        "date": "Date",
+        "total": "Total",
+        "paymentmethod": "Payment Method",
+        "orderdetail": "Order Detail",
+        "totalitem": "Total Item",
+        "ordertime": "Order Time",
+        "location": "Delivery Location",
+        "totalamount": "Total Amount",
+        "subtotal": "Sub Total"
     }
 }

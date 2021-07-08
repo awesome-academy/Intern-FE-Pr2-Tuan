@@ -1,0 +1,74 @@
+.detail-order {
+    background-color: $background-color;
+
+    .user-wrapper {
+        background-color: $white-color;
+        box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+        width: 870px;
+        margin: 0 auto;
+        padding: 50px 30px;
+
+        .order-received {
+            .bt-header {
+                line-height: 1.2;
+                margin-bottom: 25px;
+                @include cl-fs-fw($color-head-title,25px,700);
+            }
+
+            p {
+                color: $grey-color;
+            }
+        }
+
+        .detail {
+            &-info {
+
+                p {
+                    color: $grey-color;
+                    padding-left: 100px;
+                    margin: 0;
+                }
+
+                .info-header {
+                    flex-basis: 280px;
+                    flex-shrink: 0;
+                    position: relative;
+
+                    &::after {
+                        content: ":";
+                        position: absolute;
+                        right: 0;
+                        line-height: 1;
+                    }
+                }
+            }
+        }
+
+        .btn-back {
+            button {
+                a {
+                    border-radius: 6px;
+                    color: $grey-color;
+                    padding: 8px 10px;
+                    transition: all 0.3s;
+                    text-decoration: none;
+                }
+
+                &:hover {
+                    background-color: $green-color !important;
+                    border-color: $green-color !important;
+
+                    a {
+                        color: $white-color;
+                    }
+                }
+            }
+        }
+
+        .info-header {
+            line-height: 1.2;
+            margin-bottom: 10px;
+            @include cl-fs-fw($color-des,15px,700);
+        }
+    }
+}

@@ -34,6 +34,7 @@ module.exports = {
         'react/jsx-wrap-multilines': 0,
         'react/destructuring-assignment': 0,
         'react/react-in-jsx-scope': 0,
+        'react/self-closing-comp': 0,
         'no-trailing-spaces': 0,
         'no-multi-spaces': 0,
         'no-param-reassign': 0,
