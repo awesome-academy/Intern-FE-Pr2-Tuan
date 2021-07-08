@@ -1,0 +1,28 @@
+.quantityAdjustment {
+    border-radius: 30px;
+    background-color: $green-color;
+    // display: flex;
+    width: 100px;
+    // justify-content: space-around;
+    // align-items: center;
+    padding: 5px 0;
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+    @include cl-fs-fw($white-color,16px,600);
+    @include flexCustom(row,space-around,center);
+
+    .adj {
+        cursor: pointer;
+    }
+}
+
+.cart-style {
+    background-color: $background-color;
+    color: $color-head-title;
+    flex-direction: column-reverse;
+    width: 30px;
+    padding: 10px 0;
+}

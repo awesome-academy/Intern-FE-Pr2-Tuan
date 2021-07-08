@@ -1,0 +1,1 @@
+export const TOGLLE__CART__DETAIL = 'TOGGLE__CART__DETAIL';

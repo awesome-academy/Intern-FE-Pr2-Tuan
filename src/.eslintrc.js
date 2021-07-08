@@ -35,6 +35,7 @@ module.exports = {
         'react/destructuring-assignment': 0,
         'react/react-in-jsx-scope': 0,
         'react/self-closing-comp': 0,
+        'react/jsx-closing-tag-location': 0,
         'no-trailing-spaces': 0,
         'no-multi-spaces': 0,
         'no-param-reassign': 0,
