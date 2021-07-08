@@ -59,5 +59,9 @@
         "location": "Địa chỉ giao hàng",
         "totalamount": "Tổng tiền thanh toán",
         "subtotal": "Tổng tiền"
+    },
+    "cartdetail": {
+        "notfound": "Không có sản phẩm nào trong giỏ hàng",
+        "checkout": "Thanh toán"
     }
 }

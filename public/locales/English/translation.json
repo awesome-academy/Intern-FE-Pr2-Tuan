@@ -59,5 +59,9 @@
         "location": "Delivery Location",
         "totalamount": "Total Amount",
         "subtotal": "Sub Total"
+    },
+    "cartdetail": {
+        "notfound": "Not Products found",
+        "checkout": "Checkout"
     }
 }

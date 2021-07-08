@@ -1,0 +1,122 @@
+.cart-detail {
+    box-shadow: 0px 0px 30px $box-shadow;
+    background-color: $white-color;
+    position: fixed;
+    right: -500px;
+    width: 420px;
+    height: 100vh;
+    transition: right 0.5s;
+    top: 0;
+    z-index: 4;
+
+
+    &__header {
+        border-bottom: 2px solid $grey-color1;
+        padding: 20px;
+        @include flexCustom(row,space-between,center);
+
+        &-amount {
+            @include cl-fs-fw($green-color,18px,600);
+        }
+
+        .close {
+            cursor: pointer;
+        }
+    }
+
+    &__body {
+        flex-grow: 1;
+        margin-right: 5px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .not-found {
+            display: block;
+            width: 100%;
+            text-align: 'center';
+            padding: 40px 0px;
+            @include cl-fs-fw($grey-color,15px,700);
+        }
+
+        .cart-detail__item {
+            border-bottom: 1px solid $grey-color1;
+            padding: 20px;
+            @include flexCustom(row,space-between,center);
+
+            &-img {
+                width: 70px;
+                height: 70px;
+                margin: 0 15px;
+                flex-shrink: 0;
+            }
+
+            &-info {
+                flex-grow: 1;
+
+                &-title {
+                    color: $color-head-title;
+                    font-size: 15px;
+                    width: 140px;
+                }
+
+                &-price {
+                    margin: 5px 0;
+                    @include cl-fs-fw($green-color,15px,700);
+                }
+
+                &-quantity {
+                    @include cl-fs-fw($grey-color,13px,400);
+                }
+            }
+
+            &-totalprice {
+                @include cl-fs-fw($color-head-title,16px,700);
+            }
+
+            .fa-times {
+                color: $fa-times;
+                cursor: pointer;
+                transition: color 0.2s;
+                margin-left: 10px;
+
+                &:hover {
+                    color: $red;
+                }
+            }
+        }
+    }
+
+    &__footer {
+        border-radius: 30px;
+        background-color: $green-color;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+        text-decoration: none;
+
+        span {
+            padding-left: 20px;
+            padding: 15px;
+            @include cl-fs-fw($white-color,14px,600);
+        }
+
+        .total {
+            border-radius: 30px;
+            background-color: $white-color;
+            padding: 15px 30px;
+            margin: 2px;
+            @include cl-fs-fw($green-color,14px,600);
+        }
+    }
+
+    .disable-btn {
+        background-color: $background-color !important;
+        border-color: $background-color !important;
+        cursor: default !important;
+        pointer-events: none !important;
+    }
+}
+
+.c-show {
+    right: 0;
+}

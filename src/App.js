@@ -2,7 +2,16 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import routes from './routes';
+import rootReducer from './reducers';
+
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk),
+);
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);
 
@@ -24,9 +33,11 @@ function App() {
     return (
         <Elements stripe={stripePromise}>
             <BrowserRouter>
-                <div className="App">
-                    {showRoutes(routes)}
-                </div>
+                <Provider store={store}>
+                    <div className="App">
+                        {showRoutes(routes)}
+                    </div>
+                </Provider>
             </BrowserRouter>
         </Elements>
     );
