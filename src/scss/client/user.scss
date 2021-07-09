@@ -1,0 +1,121 @@
+.user {
+    .welcome {
+        cursor: pointer;
+        height: 100%;
+        padding: 10px 0;
+        letter-spacing: 2px;
+        transition: color 0.3s;
+        @include flexCenter;
+        @include cl-fs-fw($color-head-title,16px,600);
+
+        .burger {
+            cursor: pointer;
+            height: 10vh;
+            height: auto;
+            margin-left: 5px;
+            @include flexCustom(column,center,center);
+            
+            .line {
+                background-color: $color-head-title;
+                width: 25px;
+                height: 3px;
+                margin: 3px;
+                transition: transform 0.3s, background-color 0.3s;
+            }
+        }
+
+        .toggle {
+            .line {
+                background-color: $green-color;
+            }
+
+            .line:first-child {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .line:last-child {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+
+        &:hover {
+            color: $green-color;
+
+            .burger {
+                .line {
+                    background-color: $green-color !important;
+                }
+            }
+        }
+
+        &-active {
+            color: $green-color;
+        }
+    }  
+
+    .nav {
+        background-color: $white-color;
+        box-shadow: 0px 8px 6px $box-shadow;
+        position: absolute;
+        right: 0;
+        top: 11vh;
+        height: 91vh;
+        width: 25%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        z-index: 2;
+        @include flexCustom(column,space-around,center);
+
+        &-item {
+            transition: opacity 0.5s ease-in;
+
+            a {
+                letter-spacing: 2px;
+                text-decoration: none;
+                transition: color 0.3s;
+                @include cl-fs-fw($color-head-title,16px,600);
+
+                &:hover {
+                    color: $green-color;
+                }
+            }
+        }
+    }
+
+    .nav-active {
+        transform: translateX(0%) !important;
+
+        .active {
+            &:first-child {
+                animation: navLinkFade 0.8s ease-in;
+            }
+
+            &:nth-child(2) {
+                animation: navLinkFade 1s ease-in;
+            }
+
+            &:nth-child(3) {
+                animation: navLinkFade 1.2s ease-in;
+            }
+
+            &:last-child {
+                animation: navLinkFade 1.4s ease-in;
+            }
+        }
+    }
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}

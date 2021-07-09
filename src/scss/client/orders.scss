@@ -1,0 +1,148 @@
+.orders-page {
+    background-color: $background-color;
+
+    &-content {
+        display: flex;
+        padding: 160px 25px 100px 25px;
+
+        .orders-container {
+            .orders-list {
+                background-color: $white-color;
+                box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+                padding: 50px 0;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                width: 400px;
+                max-height: 530px;
+    
+                &__title {
+                    line-height: 1.2;
+                    margin-bottom: 25px;
+                    padding: 0 30px;
+                    @include cl-fs-fw($color-head-title,20px,700);
+                }
+    
+                &__item {
+                    background-color: $background-color;
+                    border-radius: 5px;
+                    border: 2px solid transparent;
+                    cursor: pointer;
+                    width: 330px;
+                    margin: 0 30px 20px 30px;
+    
+                    &-header {
+                        border-bottom: 1px solid $border-bottom;
+                        padding: 15px 20px;
+                        @include cl-fs-fw($color-head-title,14px,600);
+                    }
+    
+                    &-body {
+                        padding: 15px 20px;
+    
+                        &-info {
+                            margin-bottom: 15px;
+                            @include cl-fs-fw($color-head-title,13px,400);
+                        }
+                    }
+                }
+    
+                .active {
+                    border: 2px solid $green-color !important;
+                }
+            }
+
+            .order-detail {
+                background-color: $white-color;
+                box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+                padding-top: 50px;
+                max-height: 530px;
+
+                &__title {
+                    padding: 0 30px;
+                    line-height: 1.2;
+                    margin-bottom: 25px;
+                    @include cl-fs-fw($color-head-title,20px,700);
+                }
+
+                .detail {
+                    border-bottom: 1px solid $border-bottom;
+                    border-top: 1px solid $border-bottom;
+                    display: flex;
+                    padding: 0 30px;
+
+                    .address {
+                        border-right: 1px solid $border-bottom;
+                        flex-grow: 1;
+                        padding: 15px 0;
+
+                        &__title {
+                            margin-bottom: 10px;
+                            @include cl-fs-fw($color-head-title,15px,700);
+                        }
+
+                        span {
+                            @include cl-fs-fw($grey-color,15px,400);
+                        }
+                    }
+
+                    .amount-info {
+                        padding: 15px 20px;
+                        width: 25%;
+
+                        &__title {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 10px;
+                            @include cl-fs-fw($grey-color,15px,400);
+
+                            &:last-child {
+                                @include cl-fs-fw($color-head-title,14px,600);
+                            }
+                        }
+                    }
+                }
+
+                .order-item {
+                    overflow-y: scroll;
+                    overflow-x: hidden;
+                    height: 50%;
+
+                    table {
+                        thead {
+                            background-color: $background-color;
+
+                            th {
+                                border-bottom: 1px solid $border-bottom;
+                                border-top: 1px solid $border-bottom;
+                                padding: 5px;
+                                @include cl-fs-fw($color-head-title,14px,700);
+                            }
+                        }
+
+                        tbody {
+                            .img-wrapper {
+                                width: 70px;
+                                height: 70px;
+                                margin: 0 auto;
+                            }
+
+                            td {
+                                .name {
+                                    text-overflow: ellipsis;
+                                    margin-bottom: 10px;
+                                    @include cl-fs-fw($color-head-title,14px,700);
+                                }
+    
+                                .price {
+                                    @include cl-fs-fw($green-color,13px,400);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+}

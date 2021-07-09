@@ -72,5 +72,30 @@
     "cartdetail": {
         "notfound": "Không có sản phẩm nào trong giỏ hàng",
         "checkout": "Thanh toán"
+    },
+    "userprofile": {
+        "yourprofile": "Thông tin cá nhân",
+        "email": "Email",
+        "address": "Địa chỉ",
+        "password": "Mật khẩu",
+        "phone": "Số điện thoại",
+        "save": "Lưu"
+    },
+    "orders": {
+        "myorders": "Các Đơn hàng",
+        "order": "Đơn hàng",
+        "date": "Ngày",
+        "id": "Mã đơn",
+        "totalprice": "Tiền thanh toán",
+        "orderdetail": "Chi tiết đơn hàng",
+        "address": "Địa chỉ giao hàng",
+        "paymentmethod": "Phương thức thanh toán",
+        "subtotal": "Giá sản phẩm",
+        "discount": "Giảm giá",
+        "free": "Miễn phí giao hàng",
+        "total": "Tiền thanh toán",
+        "item": "Tên sảm phẩm",
+        "quantity": "Số lượng",
+        "price": "Giá"
     }
 }

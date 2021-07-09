@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button, Modal } from 'reactstrap';
 import FormSignIn from './FormSignIn';
 import FormSignUp from './FormSignUp';
+import User from './User';
 
 const Header = () => {
     const openForm = useSelector((state) => state.openForm);
@@ -75,7 +76,11 @@ const Header = () => {
                         <button className="language py-3 px-4" onClick={() => handleChangeLang('German')}>German</button>
                     </div>
                 </div>
-                <Button className="header__btn__signin" onClick={toggle}>{t('home.signin')}</Button>
+                <Button 
+                    className="header__btn__signin" 
+                    onClick={toggle}
+                >{t('home.signin')}</Button>
+                <User />
             </div>
         </header>
     );
