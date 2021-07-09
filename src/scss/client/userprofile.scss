@@ -1,0 +1,49 @@
+.user-profile-content {
+    background-color: $white-color;
+    box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;
+    width: 870px;
+    margin: 0 auto;
+    padding: 50px 30px;
+
+    &__head {
+        .head-title {
+            @include cl-fs-fw($color-head-title,21px,600);
+        }
+    }
+
+    &__body {
+        .form-group {
+            label {
+                line-height: 19px;
+                margin-bottom: 10px;
+                @include cl-fs-fw($color-head-title,15px,600);
+            }
+
+            input {
+                background-color: $background-color;
+                border: 1px solid $grey-color1;
+                border-radius: 6px;
+                color: $color-head-title;
+                height: 48px;
+                font-size: 15px;
+                padding: 0 18px;
+
+                &:focus {
+                    
+                    box-shadow: none;
+                    outline: 0px;
+                }
+            }
+        }
+
+        .btn {
+            background-color: $green-color;
+            border: none;
+            color: $white-color;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}

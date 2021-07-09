@@ -75,5 +75,31 @@
     "cartdetail": {
         "notfound": "Not Products found",
         "checkout": "Checkout"
+    },
+    "userprofile": {
+        "yourprofile": "Your Profile",
+        "email": "Email",
+        "address": "Address",
+        "password": "Password",
+        "phone": "Contact Number",
+        "save": "Save"
+    },
+    "orders": {
+        "myorders": "My Orders",
+        "order": "Order",
+        "date": "Order date",
+        "id": "Order Id",
+        "totalprice": "Total Price",
+        "orderdetail": "Order Detail",
+        "address": "Delivery Address",
+        "paymentmethod": "Payment Method",
+        "subtotal": "Sub Total",
+        "discount": "Discount",
+        "free": "Delivery Free",
+        "total": "Total",
+        "item": "Items",
+        "quantity": "Quantity",
+        "price": "Price"
     }
+    
 }
