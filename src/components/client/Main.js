@@ -2,12 +2,13 @@ import React from 'react';
 import Category from './Category';
 import Products from './Products';
 
-const Main = () => {
+const Main = (props) => {
+    const { products, categories } = props;
     return (
         <section className="main" style={{ backgroundColor: 'rgb(247,247,247)' }}>
             <div className="row">
-                <Category />
-                <Products />
+                <Category categories={categories} />
+                <Products products={products} />
             </div>
         </section>
     );

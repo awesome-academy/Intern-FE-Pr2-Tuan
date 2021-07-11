@@ -2,18 +2,23 @@ import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import Product from './Product';
 
-const Products = () => {
+const Products = (props) => {
+    const { products } = props;
+
+    const showProducts = (products) => {
+        let result = null;
+        if (products.length > 0) {
+            result = products.map((product) => {
+                return <Product key={product._id} product={product} />;
+            });
+        }
+        return result;
+    };
+
     return (
         <div className="col-md-10">
             <div className="row products-wrap mb-5">
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                {showProducts(products)}
             </div>
             <div className="row">
                 <Pagination aria-label="Page navigation example">
