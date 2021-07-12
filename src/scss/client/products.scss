@@ -1,5 +1,14 @@
-@import '../utils/variables';
-
 .pagination {
     justify-content: center;
+
+    .page-item {
+        background-color: $white-color;
+        border: 1px solid #dee2e6;
+        cursor: pointer;
+    }
+
+    .active {
+        background-color: $green-color;
+        color: $white-color;
+    }
 }
