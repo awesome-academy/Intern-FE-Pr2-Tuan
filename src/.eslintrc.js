@@ -43,6 +43,7 @@ module.exports = {
         'no-console': 0,
         'no-undef': 0,
         'no-unused-vars': 1,
+        'no-underscore-dangle': 0,
         'consistent-return': 0,
         'import/prefer-default-export': 0,
         'import/order': 1,
