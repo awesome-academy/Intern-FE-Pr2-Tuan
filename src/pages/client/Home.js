@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
     toggleCartDetail, 
@@ -15,9 +15,22 @@ const Home = () => {
     const isShowCartDetail = useSelector((state) => state.isShowCartDetail);
     const products = useSelector((state) => state.products);
     const categories = useSelector((state) => state.categories);
+    const [page, setPage] = useState(1);
+    const numberButton = 5;
+    const perPage = 8; 
     const dispatch = useDispatch();
+
     const onToggleCartDetail = () => {
         dispatch(toggleCartDetail());
+    };
+
+    const numberPage = Math.ceil(products.length / perPage);
+    const indexOfFirstProduct = (page - 1) * perPage;
+    const indexOfLastProduct = indexOfFirstProduct + perPage;
+    const productsSliced = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const getPage = (page) => {
+        setPage(page);
     };
 
     useEffect(() => {
@@ -33,7 +46,14 @@ const Home = () => {
                 isShowCartDetail={isShowCartDetail} 
                 toggleCartDetail={onToggleCartDetail} 
             />
-            <Main products={products} categories={categories} />
+            <Main 
+                products={productsSliced} 
+                categories={categories}
+                numberButton={numberButton}
+                numberPage={numberPage}
+                getPage={getPage} 
+                page={page}
+            />
         </MainLayout>
     );
 };

@@ -9,11 +9,12 @@ const Category = (props) => {
     const [categoryActive, setCategoryActive] = useState('');
     const dispatch = useDispatch();
     const { t } = useTranslation();
-    const { categories } = props;
+    const { categories, getPage } = props;
 
     const handleClick = (category) => {
         dispatch(filterProducts(category));
         setCategoryActive(category);
+        getPage(1);
     };
 
     const showCategories = (categories) => {

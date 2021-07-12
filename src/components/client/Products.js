@@ -1,9 +1,15 @@
 import React from 'react';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import Product from './Product';
+import Paginationn from './Pagination';
 
 const Products = (props) => {
-    const { products } = props;
+    const { 
+        products,
+        numberPage,
+        numberButton,
+        getPage,
+        page,
+    } = props;
 
     const showProducts = (products) => {
         let result = null;
@@ -20,47 +26,12 @@ const Products = (props) => {
             <div className="row products-wrap mb-5">
                 {showProducts(products)}
             </div>
-            <div className="row">
-                <Pagination aria-label="Page navigation example">
-                    <PaginationItem disabled>
-                        <PaginationLink first href="#" />
-                    </PaginationItem>
-                    <PaginationItem disabled>
-                        <PaginationLink previous href="#" />
-                    </PaginationItem>
-                    <PaginationItem active>
-                        <PaginationLink href="#">
-                        1
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                        2
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                        3
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                        4
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                        5
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink next href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink last href="#" />
-                    </PaginationItem>
-                </Pagination>
-            </div>
+            <Paginationn 
+                numberPage={numberPage}
+                numberButton={numberButton}
+                getPage={getPage}
+                page={page}
+            />
         </div>
         
     );
