@@ -4,35 +4,36 @@ import Checkout from './pages/client/Checkout';
 import DetailOrder from './pages/client/DetailOrder';
 import Orders from './pages/client/Orders';
 import UserProfile from './pages/client/UserProfile';
+import { url } from './constants/config';
 
 const routes = [
     {
-        path: '/',
+        path: `${url.home}`,
         exact: true,
         main: () => <Home />,
     },
     {
-        path: '/detail',
+        path: `${url.detailProduct}`,
         exact: true,
         main: () => <DetailProduct />,
     },
     {
-        path: '/checkout',
+        path: `${url.checkout}`,
         exact: true,
         main: () => <Checkout />,
     },
     {
-        path: '/detail-order',
+        path: `${url.detailOrder}`,
         exact: true,
         main: () => <DetailOrder />,
     },
     {
-        path: '/orders',
+        path: `${url.orders}`,
         exact: true,
         main: () => <Orders />,
     },
     {
-        path: '/profile',
+        path: `${url.profile}`,
         exact: true,
         main: () => <UserProfile />,
     },

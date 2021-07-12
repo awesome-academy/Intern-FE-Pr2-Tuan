@@ -4,11 +4,12 @@ import BtnAddToCart from './BtnAddToCart';
 
 const Product = (props) => {
     const { type, product } = props;
-
+    
     return (
         <div className="col-md-3 col-12 mb-4">
             <Link
                 className="product d-flex flex-column justify-content-center align-items-center"
+                to={`/product/${product._id}`}
             >   
                 <div className="product__img-wrap">
                     <img src={product.img} alt="product" />

@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import BtnAddToCart from './BtnAddToCart';
 
-const ProdductInfo = () => {
+const ProductInfo = (props) => {
+    const { productDetail } = props;
     const [isShowMore, setIsShowMore] = useState(false);
     const { t } = useTranslation();
 
@@ -27,7 +28,7 @@ const ProdductInfo = () => {
                         </Link>
                         <div className="img-wrapper">
                             <img 
-                                src="https://s3.amazonaws.com/redqteam.com/pickbazar/books/music_school.png" 
+                                src={productDetail.img} 
                                 alt="book img" 
                                 className="w-100 h-100"
                             />
@@ -35,23 +36,12 @@ const ProdductInfo = () => {
                     </Col>
                     <Col xl="6" lg="6" className="product-info__right">
                         <div className="product-info__right__title">
-                            <h1>Illustrated Stories for Children</h1>
-                            <p>Usborne</p>
+                            <h1>{productDetail.name}</h1>
+                            <p>{productDetail.author}</p>
                         </div>
                         <div className="product-info__right__des">
-                            <p className={isShowMore === true ? 'des-show' : ''}>
-                                The European languages are members of the same family.
-                                Their separate existence is a myth. For science, music, sport, etc, 
-                                Europe uses the same vocabulary. 
-                                The languages only differ in their grammar, their pronunciation 
-                                and their most common words. 
-                                Everyone realizes why a new common language would be desirable: 
-                                one could refuse to pay expensive translators. 
-                                To achieve this, it would be necessary to have uniform grammar, 
-                                pronunciation and more common words. 
-                                If several languages coalesce, 
-                                the grammar of the resulting language is
-                                more simple and regular than that of the individual languages.
+                            <p className={isShowMore ? 'des-show' : ''}>
+                                {productDetail.des}
                             </p>
                             {
                                 isShowMore === false 
@@ -60,7 +50,7 @@ const ProdductInfo = () => {
                             }
                         </div>
                         <div className="product-info__right__price">
-                            $99
+                            {productDetail.price}
                         </div>
                         <BtnAddToCart />
                     </Col>
@@ -70,4 +60,4 @@ const ProdductInfo = () => {
     );
 };
 
-export default ProdductInfo;
+export default ProductInfo;

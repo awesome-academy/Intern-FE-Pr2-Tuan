@@ -5,7 +5,7 @@ const Paginationn = (props) => {
     const { 
         numberPage, 
         numberButton, 
-        getPage,
+        getPage, 
         page, 
     } = props;
 
@@ -59,7 +59,7 @@ const Paginationn = (props) => {
         }
         return result;
     };
-
+    
     return (
         <div className="row">
             <Pagination aria-label="Page navigation example">
