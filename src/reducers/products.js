@@ -6,7 +6,7 @@ const products = (state = initialState, actions) => {
     switch (actions.type) {
         case Types.GET_ALL_PRODUCTS_SUCCESS:
             state = actions.products;
-            return [...state];
+            return state;
         case Types.SEARCH_PRODUCT_SUCESS:
             state = actions.products;
             return [...state];

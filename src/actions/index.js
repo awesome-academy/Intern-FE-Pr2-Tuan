@@ -74,3 +74,28 @@ export const filterProducts = (category) => {
         dispatch(filterProductsSuccess(res.data));
     };
 };
+
+export const getOneProductSuccess = (product) => {
+    return {
+        type: Types.GET_ONE_PRODUCT_SUCCESS,
+        product,
+    };
+};
+
+export const getOneProductFile = (message) => {
+    return {
+        type: Types.GET_ONE_PRODUCT_FAILE,
+        message,
+    };
+};
+
+export const getOneProduct = (id) => {
+    return async (dispatch) => { 
+        try {
+            const res = await callApi(`api/product/${id}`, 'GET', null);
+            dispatch(getOneProductSuccess(res.data));
+        } catch (error) {
+            dispatch(getOneProductFile(error.message));
+        }
+    };
+};

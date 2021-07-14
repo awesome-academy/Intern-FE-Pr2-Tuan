@@ -27,10 +27,10 @@ const Products = (props) => {
                 {showProducts(products)}
             </div>
             <Paginationn 
-                numberPage={numberPage}
-                numberButton={numberButton}
-                getPage={getPage}
-                page={page}
+                numberPage={numberPage} 
+                numberButton={numberButton} 
+                getPage={getPage} 
+                page={page} 
             />
         </div>
         

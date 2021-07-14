@@ -68,3 +68,13 @@
         }
     }
 }
+
+.relate-products {
+    background-color: $background-color;
+
+    .title {
+        line-height: 1.2;
+        padding-top: 50px;
+        @include cl-fs-fw($color-head-title,24px,700);
+    }
+}
