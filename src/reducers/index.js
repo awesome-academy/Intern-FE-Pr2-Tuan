@@ -5,6 +5,7 @@ import products from './products';
 import categories from './categories';
 import productDetail from './productDetail';
 import cart from './cart';
+import user from './user';
 
 const rootReducer = combineReducers({
     isShowCartDetail,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     categories,
     productDetail,
     cart,
+    user,
 });
 
 export default rootReducer;

@@ -7,16 +7,20 @@ import {
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { OpenFormSignUp } from '../../actions';
+import { OpenFormSignUp, login } from '../../actions';
+import callApi from '../../utils/apiCaller';
+import { regex } from '../../constants/regex';
 
-const FormSignIn = () => {
+const FormSignIn = (props) => {
     const dispatch = useDispatch();
+    const { closeModal } = props;
     const [inputValue, setInputvalue] = useState({
         email: '',
         password: '',
     });
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [errorCallApi, setErrorCallApi] = useState('');
     const { t } = useTranslation();
 
     const handleChange = (e) => {
@@ -39,9 +43,8 @@ const FormSignIn = () => {
             }
         }
         if (info === 'email') {
-            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (inputValue !== '') {
-                if (re.test(inputValue) === false) {
+                if (regex.email.test(inputValue) === false) {
                     return 'Your email is not valid.';
                 }
             }
@@ -65,9 +68,16 @@ const FormSignIn = () => {
         e.preventDefault();
         const isValidate = validate(email, password);
         if (isValidate) {
-            console.log('call api');
-        } else {
-            console.log('show errr');
+            const account = {
+                email,
+                password,
+            };
+            callApi('api/auth/sign-in', 'POST', account).then((res) => {
+                dispatch(login(res.data));
+                closeModal();
+            }).catch((error) => {
+                setErrorCallApi(error.response.data.message);
+            });
         }
     };
 
@@ -77,6 +87,16 @@ const FormSignIn = () => {
                 <h1>{t('modal.login.headtitle')}</h1>
                 <p>{t('modal.login.subtitle')}</p>
             </div>
+            {errorCallApi && <div style={{
+                color: 'rgb(97, 26, 21)',
+                backgroundColor: 'rgb(253, 236, 234)',
+                borderRadius: '4px',
+                padding: '15px',
+                textAlign: 'center',
+            }}
+            >
+                {errorCallApi}
+            </div>}
             <Form onSubmit={onSubmit}>
                 <FormGroup className="mb-3">
                     <Label className="mb-1" for="Email">{t('modal.login.email')}</Label>

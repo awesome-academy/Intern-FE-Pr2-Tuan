@@ -10,3 +10,6 @@ export const GET_ONE_PRODUCT_FAILE = 'GET_ONE_PRODUCT_FAILE';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const DECREASE_CARTITEM = 'DECREASE_CARTITEM';
 export const REMOVE_CARTITEM = 'REMOVE_CARTITEM';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const UPDATE_PROFILE_USER = 'UPDATE_PROFILE_USER';

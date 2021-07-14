@@ -34,6 +34,11 @@
                     outline: 0px;
                 }
             }
+
+            .validation {
+                margin: 0 0 10px;
+                @include cl-fs-fw($validation-color,13px,400);
+            }
         }
 
         .btn {
