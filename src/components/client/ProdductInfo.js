@@ -50,9 +50,9 @@ const ProductInfo = (props) => {
                             }
                         </div>
                         <div className="product-info__right__price">
-                            {productDetail.price}
+                            ${productDetail.price}
                         </div>
-                        <BtnAddToCart />
+                        <BtnAddToCart productDetail={productDetail || ''} />
                     </Col>
                 </Row>
             </Container>

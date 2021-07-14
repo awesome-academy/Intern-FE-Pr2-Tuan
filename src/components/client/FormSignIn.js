@@ -29,18 +29,29 @@ const FormSignIn = () => {
         });
     };
 
-    const validateFnc = (email, password) => {
-        let emailError = '';
-        let passwordError = '';
-
-        if (!email) {
-            emailError = 'The email field is required.';
+    const validateFn = (inputValue, info) => {
+        if (!inputValue) {
+            return `The ${info} field is required.`;
         }
-
-        if (!password) {
-            passwordError = 'The password field is required.';
+        if (info === 'password') {
+            if (inputValue.length < 6) {
+                return `${info.charAt(0).toUpperCase() + info.slice(1)} must be at least 5 characters.`;
+            }
         }
+        if (info === 'email') {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (inputValue !== '') {
+                if (re.test(inputValue) === false) {
+                    return 'Your email is not valid.';
+                }
+            }
+        }
+        return '';
+    };
 
+    const validate = (email, password) => {
+        const emailError = validateFn(email, 'email');
+        const passwordError = validateFn(password, 'password');
         if (emailError || passwordError) {
             setEmailError(emailError);
             setPasswordError(passwordError);
@@ -52,7 +63,7 @@ const FormSignIn = () => {
     const onSubmit = (e) => {
         const { email, password } = inputValue;
         e.preventDefault();
-        const isValidate = validateFnc(email, password);
+        const isValidate = validate(email, password);
         if (isValidate) {
             console.log('call api');
         } else {

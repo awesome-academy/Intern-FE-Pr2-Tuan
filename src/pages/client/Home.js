@@ -36,6 +36,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(getAllProducts());
         dispatch(getCategories());
+        window.scrollTo(0, 0);
     }, [dispatch]);
 
     return (

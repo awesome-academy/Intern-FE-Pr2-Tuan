@@ -2,13 +2,54 @@ import { faShoppingBag, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import QuantityAdjusment from './QuantityAdjusment';
+import { removeCartItem } from '../../actions';
 
 const CartDetail = (props) => {
+    const cart = useSelector((state) => state.cart); 
     const { isShowCartDetail, toggleCartDetail } = props;
-    const cart = [1, 2];
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+    let total = 0;
+    let totalPrice = 0;
+    cart.forEach((element) => {
+        total += element.quantity;
+        totalPrice += element.product.price * element.quantity;
+    });
+
+    const handleClick = (product) => {
+        dispatch(removeCartItem(product));
+    };
+
+    const showCartItems = (cart) => {
+        let result = null;
+        if (cart.length > 0) {
+            result = cart.map((cartItem) => {
+                return (
+                    <div key={cartItem.product._id} className="cart-detail__item">
+                        <QuantityAdjusment type="cart" cartItem={cartItem} />
+                        <div className="cart-detail__item-img">
+                            <img 
+                                src={cartItem.product.img} 
+                                alt="music book"
+                                className="w-100 h-100" 
+                            />
+                        </div>
+                        <div className="cart-detail__item-info">
+                            <div className="cart-detail__item-info-title">{cartItem.product.name}</div>
+                            <div className="cart-detail__item-info-price">${cartItem.product.price}</div>
+                            <div className="cart-detail__item-info-quantity">{cartItem.quantity} pc(s)</div>
+                        </div>
+                        <div className="cart-detail__item-totalprice">${cartItem.product.price * cartItem.quantity}</div>
+                        <FontAwesomeIcon icon={faTimes} className="ml-4" onClick={() => handleClick(cartItem.product)} />
+                    </div>
+                );
+            });
+        }
+        return result;
+    };
 
     return (
         <div className={isShowCartDetail === true 
@@ -18,7 +59,7 @@ const CartDetail = (props) => {
             <div className="cart-detail__header">
                 <div className="cart-detail__header-amount">
                     <FontAwesomeIcon className="mr-2" icon={faShoppingBag} />
-                    <span className="mx-2">1 Item</span>
+                    <span className="mx-2">{total} {total < 2 ? 'Item' : 'Items'}</span>
                 </div>
                 <FontAwesomeIcon icon={faTimes} className="close" onClick={toggleCartDetail} />
             </div>
@@ -30,28 +71,12 @@ const CartDetail = (props) => {
                         {t('cartdetail.notfound')}
                     </span>
                 }
-                <div className="cart-detail__item">
-                    <QuantityAdjusment type="cart" />
-                    <div className="cart-detail__item-img">
-                        <img 
-                            src="https://s3.amazonaws.com/redqteam.com/pickbazar/books/music_school.png" 
-                            alt="music book"
-                            className="w-100 h-100" 
-                        />
-                    </div>
-                    <div className="cart-detail__item-info">
-                        <div className="cart-detail__item-info-title">The Grimstones</div>
-                        <div className="cart-detail__item-info-price">$99</div>
-                        <div className="cart-detail__item-info-quantity">1 pc(s)</div>
-                    </div>
-                    <div className="cart-detail__item-totalprice">$99</div>
-                    <FontAwesomeIcon icon={faTimes} className="ml-4" onClick={() => setIsShow(false)} />
-                </div>
+                {showCartItems(cart)}
             </div>
             <Link to="/checkout" className={cart.length === 0 ? 'cart-detail__footer disable-btn' : 'cart-detail__footer'}>
                 <span>{t('cartdetail.checkout')}</span>
                 <div className="total d-flex align-items-center">
-                    $99
+                    ${totalPrice}
                 </div>
             </Link>
         </div>
