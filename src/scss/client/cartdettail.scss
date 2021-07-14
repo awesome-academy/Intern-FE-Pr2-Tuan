@@ -33,7 +33,7 @@
         .not-found {
             display: block;
             width: 100%;
-            text-align: 'center';
+            text-align: center;
             padding: 40px 0px;
             @include cl-fs-fw($grey-color,15px,700);
         }

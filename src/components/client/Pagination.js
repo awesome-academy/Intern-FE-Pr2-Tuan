@@ -52,6 +52,7 @@ const Paginationn = (props) => {
                 <PaginationItem 
                     className={page === i ? 'px-3 py-2 active' : 'px-3 py-2'} 
                     onClick={() => handleClick(i)}
+                    key={i}
                 >
                     {i}
                 </PaginationItem>,

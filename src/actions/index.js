@@ -90,12 +90,33 @@ export const getOneProductFile = (message) => {
 };
 
 export const getOneProduct = (id) => {
-    return async (dispatch) => { 
+    return async (dispatch) => {
         try {
             const res = await callApi(`api/product/${id}`, 'GET', null);
             dispatch(getOneProductSuccess(res.data));
         } catch (error) {
             dispatch(getOneProductFile(error.message));
         }
+    };
+};
+
+export const addToCart = (product) => {
+    return {
+        type: Types.ADD_TO_CART,
+        product,
+    };
+};
+
+export const decreaseCartItem = (product) => {
+    return {
+        type: Types.DECREASE_CARTITEM,
+        product,
+    };
+};
+
+export const removeCartItem = (product) => {
+    return {
+        type: Types.REMOVE_CARTITEM,
+        product,
     };
 };

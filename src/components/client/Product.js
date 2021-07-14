@@ -26,6 +26,7 @@ const Product = (props) => {
                                 type !== 'admin' 
                                 && <BtnAddToCart
                                     type={type}
+                                    productDetail={product}
                                 />
                             }
                         </div>
