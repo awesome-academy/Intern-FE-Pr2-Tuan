@@ -1,9 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
-const OrderDetail = () => {
+const OrderDetail = (props) => {
+    const { orders, indexOrderSelected } = props;
+    const [orderInfo, setOrderInfo] = useState({});
+    const [cartItem, setCartItem] = useState([]);
     const { t } = useTranslation();
+
+    useEffect(() => {
+        if (orders.length > 0) {
+            const orderInfo = orders[indexOrderSelected];
+            const cartItem = orderInfo.cartItem;
+            setOrderInfo({ ...orderInfo });
+            setCartItem([...cartItem]);
+        }
+    }, [indexOrderSelected, orders]);
+
+    const showCartItem = (cartItem) => {
+        let result = null;
+        if (cartItem.length > 0) {
+            result = cartItem.map((item, index) => {
+                return (
+                    <tr key={index}>
+                        <th scope="row">
+                            <div className="img-wrapper">
+                                <img 
+                                    src={item.product.img} 
+                                    alt="book"
+                                    className="w-100 h-100" 
+                                />
+                            </div>
+                        </th>
+                        <td>
+                            <div className="name">{item.product.name}</div>
+                            <div className="price">${item.product.price}</div>
+                        </td>
+                        <td>
+                            {item.quantity}
+                        </td>
+                        <td>${item.product.price * item.quantity}</td>
+                    </tr>
+                );
+            });
+        }
+        return result;
+    };
 
     return (
         <div className="order-detail d-flex flex-column flex-grow-1">
@@ -12,14 +54,14 @@ const OrderDetail = () => {
                 <div className="detail">
                     <div className="address">
                         <div className="address__title">{t('orders.address')}</div>
-                        <span>2 Minh Khai</span>
+                        <span>{orderInfo.address}</span>
                         <div className="address__title mt-4">{t('orders.paymentmethod')}</div>
-                        <span>Cash On Delivery</span>
+                        <span>{orderInfo.payment === 'cash' ? 'Cash on Delivery' : 'Online Payment'}</span>
                     </div>
                     <div className="amount-info">
                         <div className="amount-info__title">
                             {t('orders.subtotal')}
-                            <span>$99</span>
+                            <span>${orderInfo.totalPrice}</span>
                         </div>
                         <div className="amount-info__title">
                             {t('orders.discount')}
@@ -31,7 +73,7 @@ const OrderDetail = () => {
                         </div>
                         <div className="amount-info__title">
                             {t('orders.total')}
-                            <span>$99</span>
+                            <span>${orderInfo.totalPrice}</span>
                         </div>
                     </div>
                 </div>
@@ -47,63 +89,7 @@ const OrderDetail = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <div className="img-wrapper">
-                                        <img 
-                                            src="https://s3.amazonaws.com/redqteam.com/pickbazar/books/music_school.png" 
-                                            alt="book"
-                                            className="w-100 h-100" 
-                                        />
-                                    </div>
-                                </th>
-                                <td>
-                                    <div className="name">Whiskey</div>
-                                    <div className="price">$45</div>
-                                </td>
-                                <td>
-                                    1
-                                </td>
-                                <td>$45</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div className="img-wrapper">
-                                        <img 
-                                            src="https://s3.amazonaws.com/redqteam.com/pickbazar/books/music_school.png" 
-                                            alt="book"
-                                            className="w-100" 
-                                        />
-                                    </div>
-                                </th>
-                                <td>
-                                    <div className="name">Whiskey</div>
-                                    <div className="price">$45</div>
-                                </td>
-                                <td>
-                                    1
-                                </td>
-                                <td>$45</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div className="img-wrapper">
-                                        <img 
-                                            src="https://s3.amazonaws.com/redqteam.com/pickbazar/books/music_school.png" 
-                                            alt="book"
-                                            className="w-100" 
-                                        />
-                                    </div>
-                                </th>
-                                <td>
-                                    <div className="name">Whiskey</div>
-                                    <div className="price">$45</div>
-                                </td>
-                                <td>
-                                    1
-                                </td>
-                                <td>$45</td>
-                            </tr>
+                            {showCartItem(cartItem)}
                         </tbody>
                     </Table>
                 </div>

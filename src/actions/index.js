@@ -120,3 +120,33 @@ export const removeCartItem = (product) => {
         product,
     };
 };
+
+export const login = (user) => {
+    return {
+        type: Types.LOGIN,
+        user,
+    };
+};
+
+export const logout = () => {
+    return {
+        type: Types.LOGOUT,
+    };
+};
+
+export const updateUserSuccess = (user) => {
+    return {
+        type: Types.UPDATE_PROFILE_USER,
+        user,
+    };
+};
+
+export const updateUser = (newUserInfo) => {
+    return async (dispatch) => {
+        const res = await callApi('api/auth/update-user', 'PUT', newUserInfo);
+        const oldUser = JSON.parse(localStorage.getItem('user'));
+        const userUpdated = res.data;
+        userUpdated.accessToken = oldUser.accessToken;
+        dispatch(updateUserSuccess(userUpdated));
+    };
+};

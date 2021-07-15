@@ -9,6 +9,7 @@ import User from './User';
 
 const Header = () => {
     const openForm = useSelector((state) => state.openForm);
+    const user = useSelector((state) => state.user);
     const [isModal, setIsModal] = useState(false);
     const [isShowLang, setIsShowLang] = useState(false);
     const [language, setLanguage] = useState('English');
@@ -64,7 +65,7 @@ const Header = () => {
                     className="modal-dialog modal-dialog-centered" 
                     external={externalCloseBtn}
                 >
-                    {openForm === 'signin' ? <FormSignIn /> : <FormSignUp />}
+                    {openForm === 'signin' ? <FormSignIn closeModal={toggle} /> : <FormSignUp />}
                 </Modal>
                 <div className="header__btn__lang">
                     <button className="language-switched h-100" onClick={toggleShowLang}>
@@ -76,11 +77,11 @@ const Header = () => {
                         <button className="language py-3 px-4" onClick={() => handleChangeLang('German')}>German</button>
                     </div>
                 </div>
-                <Button 
-                    className="header__btn__signin" 
-                    onClick={toggle}
-                >{t('home.signin')}</Button>
-                <User />
+                {
+                    user.accessToken
+                    ? <User />
+                    : <Button className="header__btn__signin" onClick={toggle}>{t('home.signin')}</Button>
+                }
             </div>
         </header>
     );

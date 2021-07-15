@@ -51,6 +51,10 @@
                 }
             }
 
+            .active {
+                border: 1px solid $green-color;
+            }
+
             .order-detail {
                 background-color: $white-color;
                 box-shadow: 0 6px 9px $box-shadow, 0 2px 5px $box-shadow1;

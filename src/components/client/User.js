@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Burger from './Burger';
+import { logout } from '../../actions';
 
 const User = () => {
     const [isClick, setIsClick] = useState(false);
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
     return (
         <div className="user h-100">
             <div className={isClick ? 'welcome welcome-active' : 'welcome'} onClick={() => setIsClick(!isClick)}>
-                Hello Tuan
+                Hello {user.name}
                 <Burger isClick={isClick} />
             </div>
             <ul className={isClick ? 'nav nav-active' : 'nav'}>
@@ -22,7 +26,7 @@ const User = () => {
                     <Link to="/orders">My Orders</Link>
                 </li>
                 <li className={isClick ? 'nav-item active' : 'nav-item'}>
-                    <Link to="#">Logout</Link>
+                    <Link to="#" onClick={() => dispatch(logout())}>Logout</Link>
                 </li>
             </ul>
         </div>
