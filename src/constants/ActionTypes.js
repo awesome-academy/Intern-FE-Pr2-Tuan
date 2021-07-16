@@ -13,3 +13,5 @@ export const REMOVE_CARTITEM = 'REMOVE_CARTITEM';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_PROFILE_USER = 'UPDATE_PROFILE_USER';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const REMOVE_CART = 'REMOVE_CART';

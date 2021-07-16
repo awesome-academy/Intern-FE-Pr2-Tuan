@@ -1,5 +1,6 @@
 import * as Types from '../constants/ActionTypes';
 import callApi from '../utils/apiCaller';
+import { endpoint } from '../constants/endpoint';
 
 export const toggleCartDetail = () => {
     return {
@@ -28,7 +29,7 @@ export const getAllProductSuccess = (products) => {
 
 export const getAllProducts = () => {
     return async (dispatch) => {
-        const res = await callApi('api/product', 'GET', null);
+        const res = await callApi(endpoint.product, 'GET', null);
         dispatch(getAllProductSuccess(res.data));
     };
 };
@@ -42,7 +43,7 @@ export const searchProductSuccess = (products) => {
 
 export const searchProduct = (keyword) => {
     return async (dispatch) => {
-        const res = await callApi(`api/product?name=${keyword}`);
+        const res = await callApi(`${endpoint.product}?name=${keyword}`);
         dispatch(searchProductSuccess(res.data));
     };
 };
@@ -56,7 +57,7 @@ export const getCategoriesSuccess = (categories) => {
 
 export const getCategories = () => {
     return async (dispatch) => {
-        const res = await callApi('api/category', 'GET', null);
+        const res = await callApi(endpoint.category, 'GET', null);
         dispatch(getCategoriesSuccess(res.data));        
     };
 };
@@ -70,7 +71,7 @@ export const filterProductsSuccess = (products) => {
 
 export const filterProducts = (category) => {
     return async (dispatch) => {
-        const res = await callApi(`api/product?category=${category}`, 'GET', null);
+        const res = await callApi(`${endpoint.product}?category=${category}`, 'GET', null);
         dispatch(filterProductsSuccess(res.data));
     };
 };
@@ -92,7 +93,7 @@ export const getOneProductFile = (message) => {
 export const getOneProduct = (id) => {
     return async (dispatch) => {
         try {
-            const res = await callApi(`api/product/${id}`, 'GET', null);
+            const res = await callApi(`${endpoint.product}/${id}`, 'GET', null);
             dispatch(getOneProductSuccess(res.data));
         } catch (error) {
             dispatch(getOneProductFile(error.message));
@@ -143,10 +144,22 @@ export const updateUserSuccess = (user) => {
 
 export const updateUser = (newUserInfo) => {
     return async (dispatch) => {
-        const res = await callApi('api/auth/update-user', 'PUT', newUserInfo);
+        const res = await callApi(endpoint.updateUser, 'PUT', newUserInfo);
         const oldUser = JSON.parse(localStorage.getItem('user'));
         const userUpdated = res.data;
         userUpdated.accessToken = oldUser.accessToken;
         dispatch(updateUserSuccess(userUpdated));
+    };
+};
+
+export const toggleModal = () => {
+    return {
+        type: Types.TOGGLE_MODAL,
+    };
+};
+
+export const removeCart = () => {
+    return {
+        type: Types.REMOVE_CART,
     };
 };
