@@ -4,6 +4,7 @@ import Checkout from './pages/client/Checkout';
 import DetailOrder from './pages/client/DetailOrder';
 import Orders from './pages/client/Orders';
 import UserProfile from './pages/client/UserProfile';
+import Products from './pages/admin/Products';
 import { url } from './constants/config';
 
 const routes = [
@@ -36,6 +37,11 @@ const routes = [
         path: `${url.profile}`,
         exact: true,
         main: () => <UserProfile />,
+    },
+    {
+        path: `${url.adminProduct}`,
+        exact: true,
+        main: () => <Products />,
     },
 ];
 
