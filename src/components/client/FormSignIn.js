@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { OpenFormSignUp, login } from '../../actions';
 import callApi from '../../utils/apiCaller';
 import { regex } from '../../constants/regex';
+import { endpoint } from '../../constants/endpoint';
 
 const FormSignIn = (props) => {
     const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const FormSignIn = (props) => {
                 email,
                 password,
             };
-            callApi('api/auth/sign-in', 'POST', account).then((res) => {
+            callApi(endpoint.signin, 'POST', account).then((res) => {
                 dispatch(login(res.data));
                 closeModal();
             }).catch((error) => {

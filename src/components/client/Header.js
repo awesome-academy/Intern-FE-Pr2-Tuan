@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Modal } from 'reactstrap';
 import FormSignIn from './FormSignIn';
 import FormSignUp from './FormSignUp';
 import User from './User';
+import { toggleModal } from '../../actions';
 
 const Header = () => {
     const openForm = useSelector((state) => state.openForm);
     const user = useSelector((state) => state.user);
-    const [isModal, setIsModal] = useState(false);
+    const isModal = useSelector((state) => state.isModal);
     const [isShowLang, setIsShowLang] = useState(false);
     const [language, setLanguage] = useState('English');
     const { t, i18n } = useTranslation();
+    const dispatch = useDispatch();
 
     const toggleShowLang = () => {
         setIsShowLang(!isShowLang);
     };
 
     const toggle = () => {
-        setIsModal(!isModal);
+        dispatch(toggleModal());
     };
 
     const handleChangeLang = (lang) => {

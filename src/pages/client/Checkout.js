@@ -1,14 +1,17 @@
 import React from 'react';
-import MainLayout from '../../components/MainLayout/MainLayout';
-import SiderBar from '../../components/client/SiderBar';
+import { useSelector } from 'react-redux';
 import CheckoutForm from '../../components/client/CheckoutForm';
+import SiderBar from '../../components/client/SiderBar';
+import MainLayout from '../../components/MainLayout/MainLayout';
 
 const Checkout = () => {
+    const cart = useSelector((state) => state.cart);
+
     return (
         <MainLayout classname="checkout-page">
             <div className="checkout user-container">
                 <SiderBar />
-                <CheckoutForm />
+                <CheckoutForm cart={cart} />
             </div>
         </MainLayout>
     );

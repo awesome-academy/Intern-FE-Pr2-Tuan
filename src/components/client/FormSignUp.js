@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { OpenFormSignIn } from '../../actions';
 import callApi from '../../utils/apiCaller';
 import { regex } from '../../constants/regex';
+import { endpoint } from '../../constants/endpoint';
 
 const FormSignUp = () => {
     const dispatch = useDispatch();
@@ -99,7 +100,7 @@ const FormSignUp = () => {
         e.preventDefault();
         const isValidate = validate(name, email, password, address, phone);
         if (isValidate) {
-            callApi('api/auth/sign-up', 'POST', userInfo).then(() => {
+            callApi(endpoint.signup, 'POST', userInfo).then(() => {
                 dispatch(OpenFormSignIn());
             }).catch((error) => setErrorCallApi(error.response.data.message));
         }

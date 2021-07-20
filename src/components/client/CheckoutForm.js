@@ -1,44 +1,58 @@
-import React, { useState } from 'react';
-import { 
-    Form, 
-    FormGroup, 
-    Label, 
-    Input, 
-    Button, 
-} from 'reactstrap';
+import { faCreditCard, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     CardElement,
-    useStripe,
     useElements,
+    useStripe,
 } from '@stripe/react-stripe-js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCreditCard, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import {
+    Button,
+    Form,
+    FormGroup,
+    Input,
+    Label,
+} from 'reactstrap';
+import { removeCart } from '../../actions';
+import callApi from '../../utils/apiCaller';
+import { endpoint } from '../../constants/endpoint';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
+    const { cart } = props;
+    const user = useSelector((state) => state.user);
     const [inputValue, setInputValue] = useState({
-        name: 'Tuan Do',
-        email: 'doanhtuan@gmail.com',
-        address: '2 Minh Khai',
-        phone: '0963585663',
+        name: user.name,
+        email: user.email,
+        address: user.address,
+        phone: user.phone,
         payment: '',
     });
+    const [idOrder, setIdOrder] = useState('');
     const [error, setError] = useState('');
     const stripe = useStripe();
     const elements = useElements();
+    const dispatch = useDispatch();
     const { t } = useTranslation();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card: elements.getElement(CardElement),
+    const totalQuantity = (cart) => {
+        let total = null;
+        cart.forEach((item) => {
+            total += item.quantity;
         });
-        if (error) {
-            setError(error.response.data.message);
-        }
+        return total;
     };
 
+    const totalPrice = (cart) => {
+        let total = null;
+        cart.forEach((item) => {
+            total += item.product.price * item.quantity;
+        });
+        return total;
+    };
+    
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
         setInputValue({
@@ -46,14 +60,51 @@ const CheckoutForm = () => {
             [name]: value,
         });
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const today = new Date();
+        const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        const order = {
+            ...inputValue,
+            date,
+            totalPrice: totalPrice(cart),
+            cartItem: [...cart],
+        };
+        if (inputValue.payment === 'cash') {
+            const res = await callApi(endpoint.order, 'POST', order);
+            dispatch(removeCart());
+            setIdOrder(res.data._id);
+        } else if (inputValue.payment === 'card') {
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: elements.getElement(CardElement),
+            });
+            if (error) {
+                setError(error.response.data.message);
+            } else {
+                const { id } = paymentMethod;
+                const res = await callApi(endpoint.charge, 'POST', { id, amount: order.totalPrice * 100, order });
+                if (res.status === 200) {
+                    const res = await callApi(endpoint.order, 'POST', order);
+                    dispatch(removeCart());
+                    setIdOrder(res.data._id);
+                }
+            }
+        }    
+    };
+
+    if (idOrder) {
+        return <Redirect to={`/detail-order/${idOrder}`} />;
+    }
  
     return (
         <div className="checkout-form">
             <div className="order-info">
                 <h3 className="order-info__headtitle">{t('checkoutpage.yourorder')}</h3>
                 <div className="order-info__item d-flex justify-content-between">
-                    <div className="order-info__item-title">{t('checkoutpage.subtotal')}</div>
-                    <div className="order-info__item-price">$94</div>
+                    <div className="order-info__item-title">{t('checkoutpage.subtotal')} ({totalQuantity(cart)})</div>
+                    <div className="order-info__item-price">${totalPrice(cart)}</div>
                 </div>
                 <div className="order-info__item d-flex justify-content-between">
                     <div className="order-info__item-title">{t('checkoutpage.shipping')}</div>
@@ -61,7 +112,7 @@ const CheckoutForm = () => {
                 </div>
                 <div className="order-info__item d-flex justify-content-between">
                     <div className="order-info__item-title">{t('checkoutpage.total')}</div>
-                    <div className="order-info__item-price">$94</div>
+                    <div className="order-info__item-price">${totalPrice(cart)}</div>
                 </div>
             </div>
             <Form onSubmit={handleSubmit}>
@@ -69,19 +120,44 @@ const CheckoutForm = () => {
                     <h3 className="billing-address__title">{t('checkoutpage.billaddress')}</h3>
                     <FormGroup>
                         <Label for="name">{t('checkoutpage.name')}</Label>
-                        <Input type="text" name="text" id="name" autoComplete="off" value={inputValue.name} />
+                        <Input 
+                            type="text" 
+                            name="name" 
+                            id="name" 
+                            autoComplete="off" 
+                            value={inputValue.name}
+                            onChange={handleChangeInput}
+                        />
                     </FormGroup>
                     <FormGroup>
                         <Label for="email">Email</Label>
-                        <Input type="email" name="email" id="email" value={inputValue.email} />
+                        <Input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            value={inputValue.email}
+                            onChange={handleChangeInput} 
+                        />
                     </FormGroup>
                     <FormGroup>
                         <Label for="address">{t('checkoutpage.address')}</Label>
-                        <Input type="text" name="address" id="address" value={inputValue.address} />
+                        <Input 
+                            type="text" 
+                            name="address" 
+                            id="address" 
+                            value={inputValue.address} 
+                            onChange={handleChangeInput}
+                        />
                     </FormGroup>
                     <FormGroup>
                         <Label for="phone">{t('checkoutpage.phone')}</Label>
-                        <Input type="text" name="phone" id="phone" value={inputValue.phone} />
+                        <Input 
+                            type="text" 
+                            name="phone" 
+                            id="phone" 
+                            value={inputValue.phone} 
+                            onChange={handleChangeInput}
+                        />
                     </FormGroup>
                 </div>
                 <div className="payment">

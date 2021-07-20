@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import callApi from '../../utils/apiCaller';
 import Product from './Product';
 import Paginationn from './Pagination';
+import { endpoint } from '../../constants/endpoint';
 
 const RelateProducts = ({ category }) => {
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -20,7 +21,7 @@ const RelateProducts = ({ category }) => {
 
     useEffect(() => {
         const getRelatedProducts = async (category) => {
-            const res = await callApi(`api/product?category=${category}`);
+            const res = await callApi(`${endpoint.product}?category=${category}`);
             setRelatedProducts(res.data);
         };
         getRelatedProducts(category);

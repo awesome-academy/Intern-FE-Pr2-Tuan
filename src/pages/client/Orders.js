@@ -6,6 +6,7 @@ import OrderDetail from '../../components/client/OrderDetail';
 import SiderBar from '../../components/client/SiderBar';
 import MainLayout from '../../components/MainLayout/MainLayout';
 import callApi from '../../utils/apiCaller';
+import { endpoint } from '../../constants/endpoint';
 
 const Orders = () => {
     const user = useSelector((state) => state.user);
@@ -14,7 +15,7 @@ const Orders = () => {
     const [indexOrderSelected, setIndexOrderSelected] = useState(0);
 
     useEffect(() => {
-        callApi(`api/order?email=${user.email}`, 'GET', null).then((res) => {
+        callApi(`${endpoint.order}?email=${user.email}`, 'GET', null).then((res) => {
             setOrders(res.data);
         });
     }, [user.email]);

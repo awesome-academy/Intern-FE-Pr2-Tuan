@@ -44,6 +44,10 @@ const cart = (state = initialState, actions) => {
             state.splice(index, 1);
             localStorage.setItem('cart', JSON.stringify(state));
             return [...state];
+        case Types.REMOVE_CART:
+            state = [];
+            localStorage.removeItem('cart');
+            return [...state];
         default:
             return [...state];
     }

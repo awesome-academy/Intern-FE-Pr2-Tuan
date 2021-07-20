@@ -1,15 +1,17 @@
 import { faShoppingBag, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import QuantityAdjusment from './QuantityAdjusment';
-import { removeCartItem } from '../../actions';
+import { removeCartItem, toggleModal } from '../../actions';
+import { url } from '../../constants/config';
 
 const CartDetail = (props) => {
     const cart = useSelector((state) => state.cart); 
     const { isShowCartDetail, toggleCartDetail } = props;
+    const [isUser, setIsUser] = useState(false);
     const { t } = useTranslation();
     const dispatch = useDispatch();
     let total = 0;
@@ -21,6 +23,16 @@ const CartDetail = (props) => {
 
     const handleClick = (product) => {
         dispatch(removeCartItem(product));
+    };
+
+    const handleClickCheckout = (e) => {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            setIsUser(true);
+        } else {
+            dispatch(toggleModal());
+        }
     };
 
     const showCartItems = (cart) => {
@@ -51,6 +63,10 @@ const CartDetail = (props) => {
         return result;
     };
 
+    if (isUser) {
+        return <Redirect to={url.checkout} />;
+    }
+
     return (
         <div className={isShowCartDetail === true 
             ? 'cart-detail d-flex flex-column c-show' 
@@ -73,7 +89,15 @@ const CartDetail = (props) => {
                 }
                 {showCartItems(cart)}
             </div>
-            <Link to="/checkout" className={cart.length === 0 ? 'cart-detail__footer disable-btn' : 'cart-detail__footer'}>
+            <Link 
+                to="/checkout" 
+                className={
+                    cart.length === 0 
+                    ? 'cart-detail__footer disable-btn' 
+                    : 'cart-detail__footer'
+                }
+                onClick={handleClickCheckout}
+            >
                 <span>{t('cartdetail.checkout')}</span>
                 <div className="total d-flex align-items-center">
                     ${totalPrice}
