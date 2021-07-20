@@ -1,0 +1,74 @@
+.main-content {
+    background-color: $background-color;
+    width: calc(100% - 270px);
+    float: right;
+    padding: 155px 40px 0 40px;
+
+    .taskbar-wrap {
+        background-color: $white-color;
+        box-shadow: $box-shadow 0px 21px 36px;
+
+        .taskbar {
+            padding: 40px;
+            
+            .title {
+                align-items: center;
+                display: flex;
+                margin: 0;
+                height: 100%;
+                @include cl-fs-fw($nav-admin,18px,600);
+            }
+
+            .filter {
+                position: relative;
+
+                select {
+                    align-items: center;
+                    background-color: $background-filter;
+                    border-radius: 3px;
+                    border: 2px solid transparent;
+                    cursor: pointer;
+                    display: flex;
+                    padding: 10px 12px;
+                    @include cl-fs-fw($nav-admin,16px,600);
+
+                    option {
+                        padding: 10px 16px;
+                        cursor: pointer;
+                        @include cl-fs-fw($option,14px,600);
+                    }
+
+                    &:focus {
+                        border-color: $green-color;
+                        background-color: $background-color;
+                        outline: none;
+                    }
+                }
+            }
+
+            .search {
+                .form-group  {
+                    background-color: $background-filter;
+                    border-radius: 3px;
+                    border: none;
+                    height: 100%;
+                    padding: 0 5px;
+
+                    input {
+                        border: none;
+                        background-color: inherit;
+
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+
+                    &:focus {
+                        border-color: $green-color;
+                        background-color: $background-color;
+                    }
+                }
+            }
+        }
+    }
+}

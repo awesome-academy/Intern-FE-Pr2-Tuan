@@ -1,0 +1,29 @@
+.header-admin {
+    background-color: $white-color;
+    box-shadow: $box-shadow1 0px 1px 2px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 30px 60px;
+    z-index: 2;
+    @include flexCustom(row,space-between,center);
+
+    &__logo {
+        @include flexCenter;
+
+        img {
+            width: 160px;
+        }
+    }
+
+    &__btn {
+        background-color: $green-color;
+        border-radius: 5px;
+        color: $white-color;
+        cursor: pointer;
+        height: 50px;
+        font-weight: 600;
+        padding: 10px 20px;
+        @include flexCenter;
+    }
+}

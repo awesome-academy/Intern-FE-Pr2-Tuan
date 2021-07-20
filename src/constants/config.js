@@ -5,4 +5,5 @@ export const url = {
     detailOrder: '/detail-order/:id',
     orders: '/orders',
     profile: '/profile',
+    adminProduct: '/admin/product',
 };
