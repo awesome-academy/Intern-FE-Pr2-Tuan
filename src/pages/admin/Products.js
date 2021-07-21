@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { getAllProducts, getCategories } from '../../actions';
 import Header from '../../components/admin/Header';
 import ShowProducts from '../../components/admin/ShowProducts';
@@ -14,6 +15,7 @@ const Products = () => {
     const numberButton = 5;
     const perPage = 8;
     const dispatch = useDispatch();
+    const adminToken = localStorage.getItem('adminToken');
 
     useEffect(() => {
         dispatch(getAllProducts());
@@ -29,6 +31,10 @@ const Products = () => {
     const indexOfLastProduct = indexOfFirstProduct + perPage;
     const productsSliced = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
+    if (!adminToken) {
+        return <Redirect to="/admin/login" />;
+    }
+
     return (
         <div className="products-admin">
             <Header />
@@ -40,6 +46,7 @@ const Products = () => {
                 numberPage={numberPage}
                 getPage={getPage} 
                 page={page} 
+                categories={categories}
             />
         </div>
     );

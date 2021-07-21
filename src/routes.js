@@ -5,6 +5,7 @@ import DetailOrder from './pages/client/DetailOrder';
 import Orders from './pages/client/Orders';
 import UserProfile from './pages/client/UserProfile';
 import Products from './pages/admin/Products';
+import Login from './pages/admin/Login';
 import { url } from './constants/config';
 
 const routes = [
@@ -42,6 +43,11 @@ const routes = [
         path: `${url.adminProduct}`,
         exact: true,
         main: () => <Products />,
+    },
+    {
+        path: '/admin/login',
+        exact: true,
+        main: () => <Login />,
     },
 ];
 

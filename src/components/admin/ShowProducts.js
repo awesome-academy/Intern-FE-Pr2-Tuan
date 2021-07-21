@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import TaskBar from './TaskBar';
 import Product from '../client/Product';
@@ -10,8 +10,14 @@ const ShowProducts = (props) => {
         numberButton, 
         numberPage, 
         getPage, 
-        page, 
+        page,
+        categories,
     } = props;
+    const [filterValue, setFilterValue] = useState({
+        category: '',
+        price: '',
+    });
+    console.log(filterValue);
 
     const showProducts = (products) => {
         let result = null;
@@ -28,7 +34,11 @@ const ShowProducts = (props) => {
             <Container>
                 <Row className="px-3">
                     <Col className="taskbar-wrap mb-4 pb-0">
-                        <TaskBar /> 
+                        <TaskBar 
+                            categories={categories}
+                            filterValue={filterValue}
+                            setFilterValue={setFilterValue} 
+                        /> 
                     </Col>
                 </Row>
                 <Row>
