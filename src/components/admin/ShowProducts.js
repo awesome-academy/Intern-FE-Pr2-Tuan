@@ -2,9 +2,16 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import TaskBar from './TaskBar';
 import Product from '../client/Product';
+import Pagination from '../client/Pagination';
 
 const ShowProducts = (props) => {
-    const { products } = props;
+    const { 
+        products, 
+        numberButton, 
+        numberPage, 
+        getPage, 
+        page, 
+    } = props;
 
     const showProducts = (products) => {
         let result = null;
@@ -27,13 +34,14 @@ const ShowProducts = (props) => {
                 <Row>
                     {showProducts(products)}
                 </Row>
-                {/* <Row style={{ justifyContent: "center" }}>
-                    <Pagination 
-                        perPage={perPage} 
-                        totalProducts={totalProducts} 
-                        paginate={paginate} 
+                <Row className="justify-content-center mt-4">
+                    <Pagination
+                        numberButton={numberButton}
+                        numberPage={numberPage}
+                        getPage={getPage}
+                        page={page}
                     />
-                </Row> */}
+                </Row>
             </Container>
         </div>
     );
