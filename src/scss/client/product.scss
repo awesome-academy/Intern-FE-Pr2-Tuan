@@ -35,6 +35,20 @@
         }
     }
 
+    .btn-wrap {
+        .btn-delete {
+            background-color: $white-color;
+            border: none;
+            border-radius: 18px;
+            color: $green-color;
+
+            &:hover {
+                background-color: $green-color;
+                color: $white-color;
+            }
+        }
+    }
+
     &:hover {
         text-decoration: none;
     }

@@ -163,3 +163,64 @@ export const removeCart = () => {
         type: Types.REMOVE_CART,
     };
 };
+
+export const toggleFormAddProduct = () => {
+    return {
+        type: Types.TOGGLE_FORM_ADD_PRODUCT,
+    };
+};
+
+export const addProductSuccess = (product) => {
+    return {
+        type: Types.ADD_PRODUCT,
+        product,
+    };
+};
+
+export const addProduct = (product) => {
+    return async (dispatch) => {
+        const res = await callApi(endpoint.product, 'POST', product);
+        dispatch(addProductSuccess(res.data));
+    };
+};
+
+export const removeProductSuccess = (product) => {
+    return {
+        type: Types.REMOVE_PRODUCT,
+        product,
+    };
+};
+
+export const removeProduct = (id) => {
+    return async (dispatch) => {
+        const res = await callApi(`${endpoint.product}/${id}`, 'DELETE', null);
+        dispatch(removeProductSuccess(res.data));
+    };
+};
+
+export const updateProductSuccess = (product) => {
+    return {
+        type: Types.UPDATE_PRODUCT,
+        product,
+    };
+};
+
+export const updateProduct = (product) => {
+    return async (dispatch) => {
+        const res = await callApi(endpoint.product, 'PUT', product);
+        dispatch(updateProductSuccess(res.data));
+    };
+};
+
+export const getProductUpdate = (product) => {
+    return {
+        type: Types.GET_PRODUCT_UPDATE,
+        product,
+    };
+};
+
+export const resetProductUpdate = () => {
+    return {
+        type: Types.RESET_PRODUCT_UPDATE,
+    };
+};

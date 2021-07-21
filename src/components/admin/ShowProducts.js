@@ -17,7 +17,7 @@ const ShowProducts = (props) => {
         let result = null;
         if (products.length > 0) {
             result = products.map((product) => {
-                return <Product key={product._id} product={product} />;
+                return <Product key={product._id} product={product} type="admin" />;
             });
         }
         return result;
