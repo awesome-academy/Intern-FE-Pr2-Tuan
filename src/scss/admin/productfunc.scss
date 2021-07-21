@@ -1,0 +1,144 @@
+.form-product {
+    box-shadow: 0px 0px 30px $box-shadow;
+    background-color: $background-color;
+    position: fixed;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    // transition: right 0.5s;
+    top: 0;
+    z-index: 4;
+
+    
+    &__header {
+        &-title {
+            color: $nav-admin;
+        }
+
+        .fa-times {
+            font-size: 20px;
+
+            &:hover {
+                color: $red;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 70%;
+
+        .title {
+            padding-top: 15px;
+            @include cl-fs-fw($option,14px,400);
+        }
+
+        .upload-img-wrap {
+            .upload-img {
+                background-color: $white-color;
+
+                .img-wrapper {
+                    border: 1px solid $grey-color1;
+                    width: 100px;
+                    height: 100px;
+                    padding: 4px;
+                }
+            }
+
+            .form-group {
+                label {
+                    border: 2px dashed $border-input;
+                    cursor: pointer;
+
+                    svg {
+                        color: $border-input;
+                        margin-bottom: 10px;
+                    }
+
+                    span {
+                        span {
+                            @include cl-fs-fw($green-color,14px,600);
+                        }
+                    }
+                }
+            }
+        }
+
+        .info-product {
+            .title {
+                @include cl-fs-fw($option,14px,400);
+            }
+
+            &-content {
+                background-color: $white-color;
+
+                .form-group {
+                    label {
+                        @include cl-fs-fw($nav-admin,14px,600);
+                    }
+
+                    input {
+                        background-color: $background-filter;
+                        border: none;
+
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+
+                    select {
+                        background-color: $background-filter;
+                        border: none;
+
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+
+                    textarea {
+                        background-color: $background-filter;
+                        border: none;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .btn-wrap {
+            background-color: $white-color;
+
+            .btn-cancel {
+                button {
+                    background-color: $white-color;
+                    border: none;
+                    @include cl-fs-fw($red,14px,600);
+
+                    &:focus {
+                        box-shadow: none;
+                    }
+
+                    &:hover {
+                        background-color: $background-filter;
+                    }
+                }
+            }
+
+            .btn-submit {
+                button {
+                    background-color: $green-color;
+                    border: none;
+                    @include cl-fs-fw($white-color,14px,600);
+
+                    &:focus {
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

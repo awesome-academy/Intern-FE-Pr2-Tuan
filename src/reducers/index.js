@@ -7,6 +7,8 @@ import productDetail from './productDetail';
 import cart from './cart';
 import user from './user';
 import isModal from './isModal';
+import formAddProduct from './formAddProduct';
+import productEditting from './productEditting';
 
 const rootReducer = combineReducers({
     isShowCartDetail,
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
     cart,
     user,
     isModal,
+    formAddProduct,
+    productEditting,
 });
 
 export default rootReducer;
