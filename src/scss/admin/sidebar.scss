@@ -29,11 +29,15 @@
                 }
             }
 
+            .active {
+                background-color: $background-color;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                color: $green-color !important;
+            }
+
             &:last-child {
                 flex-grow: 1;
-                // display: flex;
-                // flex-direction: column;
-                // justify-content: flex-end;
                 @include flexCustom(column,flex-end,flex-start);
             }
         }

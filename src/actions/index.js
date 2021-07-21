@@ -224,3 +224,17 @@ export const resetProductUpdate = () => {
         type: Types.RESET_PRODUCT_UPDATE,
     };
 };
+
+export const filterProductsAdminSuccess = (products) => {
+    return {
+        type: Types.FILTER_PRODUCTS_ADMIN,
+        products,
+    };
+};
+
+export const filterProductsAdmin = (category, priceType) => {
+    return async (dispatch) => {
+        const res = await callApi(`api/product?category=${category}&sortBy=${priceType ? 'price' : ''}&sort=${priceType}`);
+        dispatch(filterProductsAdminSuccess(res.data));
+    };
+};

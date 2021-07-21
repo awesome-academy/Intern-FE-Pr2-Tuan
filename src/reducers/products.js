@@ -35,6 +35,9 @@ const products = (state = initialState, actions) => {
             index = findIndex(state, actions.product._id);
             state[index] = actions.product;
             return [...state];
+        case Types.FILTER_PRODUCTS_ADMIN:
+            state = actions.products;
+            return [...state];
         default:
             return [...state];
     }
