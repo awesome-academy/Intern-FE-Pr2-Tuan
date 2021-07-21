@@ -238,3 +238,10 @@ export const filterProductsAdmin = (category, priceType) => {
         dispatch(filterProductsAdminSuccess(res.data));
     };
 };
+
+export const changeLanguage = (language) => {
+    return {
+        type: Types.CHANGE_LANGUAGE,
+        language,
+    };
+};

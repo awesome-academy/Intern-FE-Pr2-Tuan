@@ -2,14 +2,18 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { Button } from 'reactstrap';
 import { removeProduct } from '../../actions';
 
 const BtnDelete = ({ product }) => {
     const dispatch = useDispatch();
 
+    const notify = () => toast.success('Delete Product Success');
+
     const handleClick = (id) => {
         dispatch(removeProduct(id));
+        notify();
     };
 
     return (

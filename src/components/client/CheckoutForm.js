@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import {
     Button,
     Form,
@@ -36,6 +37,9 @@ const CheckoutForm = (props) => {
     const elements = useElements();
     const dispatch = useDispatch();
     const { t } = useTranslation();
+
+    const notifyOrder = () => toast.success('Order Success');
+    const notifyCheckout = () => toast.success('Checkout Success');
 
     const totalQuantity = (cart) => {
         let total = null;
@@ -75,6 +79,7 @@ const CheckoutForm = (props) => {
             const res = await callApi(endpoint.order, 'POST', order);
             dispatch(removeCart());
             setIdOrder(res.data._id);
+            notifyOrder();
         } else if (inputValue.payment === 'card') {
             const { error, paymentMethod } = await stripe.createPaymentMethod({
                 type: 'card',
@@ -89,6 +94,7 @@ const CheckoutForm = (props) => {
                     const res = await callApi(endpoint.order, 'POST', order);
                     dispatch(removeCart());
                     setIdOrder(res.data._id);
+                    notifyCheckout();
                 }
             }
         }    
@@ -136,7 +142,6 @@ const CheckoutForm = (props) => {
                             name="email" 
                             id="email" 
                             value={inputValue.email}
-                            onChange={handleChangeInput} 
                         />
                     </FormGroup>
                     <FormGroup>
@@ -191,7 +196,13 @@ const CheckoutForm = (props) => {
                 </div>
                 {inputValue.payment === 'card' && <CardElement />}
                 {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '5px' }}>{error}</p>}
-                <Button type="submit" className="btn w-100" disabled={!stripe}>{t('checkoutpage.proceedcheckout')}</Button>
+                <Button 
+                    type="submit" 
+                    className={cart.length === 0 ? 'btn w-100 disable-btn' : 'btn w-100'}
+                    disabled={!stripe}
+                >
+                    {t('checkoutpage.proceedcheckout')}
+                </Button>
             </Form>
         </div>
     );

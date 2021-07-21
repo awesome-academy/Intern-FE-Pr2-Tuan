@@ -2,6 +2,7 @@ import { faCloudUploadAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
     Button, Col,
     Form,
@@ -9,13 +10,13 @@ import {
     Input,
     Label, Row,
 } from 'reactstrap';
-import callApi from '../../utils/apiCaller';
-import { 
-    toggleFormAddProduct, 
-    addProduct, 
+import {
+    addProduct,
     resetProductUpdate, 
-    updateProduct, 
+    toggleFormAddProduct, 
+    updateProduct,
 } from '../../actions';
+import callApi from '../../utils/apiCaller';
 
 const ProductFunc = ({ categories }) => {
     const productEditting = useSelector((state) => state.productEditting);
@@ -38,6 +39,8 @@ const ProductFunc = ({ categories }) => {
     });
     const [errorCallApi, setErrorCallApi] = useState('');
     const dispatch = useDispatch();
+    const notifyAdd = () => toast.success('Add Product Success!');
+    const notifyUpdate = () => toast.success('Update Product Success!');
 
     useEffect(() => {
         if (Object.keys(productEditting).length !== 0) {
@@ -153,6 +156,7 @@ const ProductFunc = ({ categories }) => {
                 };
                 dispatch(addProduct(product));
                 dispatch(toggleFormAddProduct());
+                notifyAdd();
             } else { // update product
                 const product = {
                     _id,
@@ -165,6 +169,7 @@ const ProductFunc = ({ categories }) => {
                 };
                 dispatch(updateProduct(product));
                 dispatch(toggleFormAddProduct());
+                notifyUpdate();
             }
         }
     };

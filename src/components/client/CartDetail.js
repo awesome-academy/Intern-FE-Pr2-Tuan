@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import QuantityAdjusment from './QuantityAdjusment';
+import { toast } from 'react-toastify';
 import { removeCartItem, toggleModal } from '../../actions';
+import QuantityAdjusment from './QuantityAdjusment';
 import { url } from '../../constants/config';
 
 const CartDetail = (props) => {
@@ -21,8 +22,11 @@ const CartDetail = (props) => {
         totalPrice += element.product.price * element.quantity;
     });
 
+    const notify = () => toast.success('Remove Product Success!');
+
     const handleClick = (product) => {
         dispatch(removeCartItem(product));
+        notify();
     };
 
     const handleClickCheckout = (e) => {
