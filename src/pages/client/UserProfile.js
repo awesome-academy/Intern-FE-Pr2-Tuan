@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
-    Button, 
-    Col, 
+    Button,
+    Col,
     Form,
-    FormGroup, 
-    Input, 
-    Label, 
+    FormGroup,
+    Input,
+    Label,
     Row,
 } from 'reactstrap';
+import { updateUser } from '../../actions';
 import SiderBar from '../../components/client/SiderBar';
 import MainLayout from '../../components/MainLayout/MainLayout';
-import { updateUser } from '../../actions';
 import { regex } from '../../constants/regex';
 
 const UserProfile = () => {
@@ -29,6 +30,7 @@ const UserProfile = () => {
     const [phoneError, setPhoneError] = useState('');
     const dispatch = useDispatch();
     const { t } = useTranslation();
+    const notify = () => toast.success('Update Success');
 
     const handlechange = (e) => {
         const { name, value } = e.target;
@@ -92,6 +94,7 @@ const UserProfile = () => {
         const isValidate = validate(name, email, address, phone);
         if (isValidate) {
             dispatch(updateUser(userInfo));
+            notify();
         }
     };
 

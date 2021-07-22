@@ -1,12 +1,14 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import routes from './routes';
 import rootReducer from './reducers';
+import routes from './routes';
 
 const store = createStore(
     rootReducer,
@@ -37,6 +39,7 @@ function App() {
                     <div className="App">
                         {showRoutes(routes)}
                     </div>
+                    <ToastContainer />
                 </Provider>
             </BrowserRouter>
         </Elements>

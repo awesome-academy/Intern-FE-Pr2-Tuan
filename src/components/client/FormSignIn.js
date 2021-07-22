@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { 
-    Form, 
-    FormGroup, 
-    Label, Input, 
-    Button, 
-} from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { OpenFormSignUp, login } from '../../actions';
-import callApi from '../../utils/apiCaller';
-import { regex } from '../../constants/regex';
+import { toast } from 'react-toastify';
+import {
+    Button, Form,
+    FormGroup, Input, Label,
+} from 'reactstrap';
+import { login, OpenFormSignUp } from '../../actions';
 import { endpoint } from '../../constants/endpoint';
+import { regex } from '../../constants/regex';
+import callApi from '../../utils/apiCaller';
 
 const FormSignIn = (props) => {
     const dispatch = useDispatch();
@@ -23,6 +22,7 @@ const FormSignIn = (props) => {
     const [passwordError, setPasswordError] = useState('');
     const [errorCallApi, setErrorCallApi] = useState('');
     const { t } = useTranslation();
+    const notify = () => toast.success('Login Success');
 
     const handleChange = (e) => {
         const target = e.target;
@@ -76,6 +76,7 @@ const FormSignIn = (props) => {
             callApi(endpoint.signin, 'POST', account).then((res) => {
                 dispatch(login(res.data));
                 closeModal();
+                notify();
             }).catch((error) => {
                 setErrorCallApi(error.response.data.message);
             });

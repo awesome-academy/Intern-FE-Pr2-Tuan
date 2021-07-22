@@ -3,6 +3,7 @@ import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { addToCart } from '../../actions';
 import QuantityAdjusment from './QuantityAdjusment';
 
@@ -12,6 +13,7 @@ const BtnAddToCart = (props) => {
     const { type, productDetail } = props;
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const notify = () => toast.success('Add to cart success');
 
     useEffect(() => {
         if (Object.keys(productDetail).length !== 0) {
@@ -27,6 +29,7 @@ const BtnAddToCart = (props) => {
 
     const handleClick = (product) => {
         dispatch(addToCart(product));
+        notify();
     };
 
     return (

@@ -9,6 +9,7 @@ import user from './user';
 import isModal from './isModal';
 import formAddProduct from './formAddProduct';
 import productEditting from './productEditting';
+import language from './language';
 
 const rootReducer = combineReducers({
     isShowCartDetail,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     isModal,
     formAddProduct,
     productEditting,
+    language,
 });
 
 export default rootReducer;

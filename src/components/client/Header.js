@@ -6,14 +6,14 @@ import { Button, Modal } from 'reactstrap';
 import FormSignIn from './FormSignIn';
 import FormSignUp from './FormSignUp';
 import User from './User';
-import { toggleModal } from '../../actions';
+import { toggleModal, changeLanguage } from '../../actions';
 
 const Header = () => {
     const openForm = useSelector((state) => state.openForm);
     const user = useSelector((state) => state.user);
     const isModal = useSelector((state) => state.isModal);
     const [isShowLang, setIsShowLang] = useState(false);
-    const [language, setLanguage] = useState('English');
+    const language = useSelector((state) => state.language);
     const { t, i18n } = useTranslation();
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const Header = () => {
     };
 
     const handleChangeLang = (lang) => {
-        setLanguage(lang);
+        dispatch(changeLanguage(lang));
         setIsShowLang(false);
         i18n.changeLanguage(lang);
     };

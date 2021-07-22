@@ -21,7 +21,6 @@ const Search = (props) => {
         if (keyword) {
             dispatch(searchProduct(keyword));
         } else {
-            console.log('call filter product');
             dispatch(filterProductsAdmin(filterValue.category, filterValue.price));
         }
     }, [dispatch, filterValue.category, filterValue.price, keyword]);
@@ -29,10 +28,8 @@ const Search = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (keyword) {
-            console.log('call search product');
             run();
         } else {
-            console.log('call filter product');
             dispatch(filterProductsAdmin(filterValue.category, filterValue.price));
         }
     };
